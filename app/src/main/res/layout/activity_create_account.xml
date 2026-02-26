@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/createAccountMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_background"
+    android:fillViewport="true"
+    tools:context=".CreateAccountActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:paddingTop="48dp"
+        android:paddingBottom="32dp">
+
+        <!-- App name -->
+        <TextView
+            android:id="@+id/tvCreateAppTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/form_app_title"
+            android:textColor="@color/green_accent"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            android:fontFamily="sans-serif"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Crear cuenta title -->
+        <TextView
+            android:id="@+id/tvCreateTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/crear_cuenta_title"
+            android:textColor="@color/green_accent"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCreateAppTitle"
+            android:layout_marginTop="40dp" />
+
+        <!-- Email label -->
+        <TextView
+            android:id="@+id/tvCreateEmailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_email"
+            android:textColor="@color/green_accent"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCreateTitle"
+            android:layout_marginTop="40dp" />
+
+        <!-- Email input -->
+        <EditText
+            android:id="@+id/etCreateEmail"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:hint="@string/hint_email"
+            android:textColorHint="@color/input_hint"
+            android:textColor="@color/green_accent"
+            android:textSize="16sp"
+            android:inputType="textEmailAddress"
+            android:background="@android:color/transparent"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:autofillHints="emailAddress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCreateEmailLabel"
+            android:layout_marginTop="4dp" />
+
+        <!-- Email underline -->
+        <View
+            android:id="@+id/createEmailUnderline"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/green_accent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etCreateEmail" />
+
+        <!-- Password label -->
+        <TextView
+            android:id="@+id/tvCreatePasswordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_password"
+            android:textColor="@color/green_accent"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/createEmailUnderline"
+            android:layout_marginTop="20dp" />
+
+        <!-- Password input -->
+        <EditText
+            android:id="@+id/etCreatePassword"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:hint="@string/hint_password"
+            android:textColorHint="@color/input_hint"
+            android:textColor="@color/green_accent"
+            android:textSize="16sp"
+            android:inputType="textPassword"
+            android:background="@android:color/transparent"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:autofillHints="password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCreatePasswordLabel"
+            android:layout_marginTop="4dp" />
+
+        <!-- Password underline -->
+        <View
+            android:id="@+id/createPasswordUnderline"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/green_accent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etCreatePassword" />
+
+        <!-- Remember checkbox -->
+        <CheckBox
+            android:id="@+id/cbCreateRemember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/remember_device"
+            android:textColor="#80FFFFFF"
+            android:textSize="12sp"
+            android:buttonTint="@color/green_accent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/createPasswordUnderline"
+            android:layout_marginTop="12dp" />
+
+        <!-- Acceder button -->
+        <Button
+            android:id="@+id/btnCreateAcceder"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:text="@string/btn_login"
+            android:textColor="@color/green_accent"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_login_border"
+            android:stateListAnimator="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cbCreateRemember"
+            android:layout_marginTop="28dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp" />
+
+        <!-- Already have account -->
+        <TextView
+            android:id="@+id/tvCreateAlreadyAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnCreateAcceder"
+            android:layout_marginTop="16dp" />
+
+        <!-- App description -->
+        <TextView
+            android:id="@+id/tvAppDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/app_description"
+            android:textColor="#80FFFFFF"
+            android:textSize="11sp"
+            android:justificationMode="inter_word"
+            android:lineSpacingExtra="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCreateAlreadyAccount"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,6 +1,5 @@
 package com.example.comufavor;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -9,7 +8,6 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,51 +18,47 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+public class CreateAccountActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_create_account);
 
-        // Handle edge-to-edge insets
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.createAccountMain), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        setupLoginButton();
-        setupCreateAccountText();
+        setupAccederButton();
+        setupAlreadyHaveAccountText();
     }
 
-    private void setupLoginButton() {
-        Button btnLogin = findViewById(R.id.btnLogin);
-        btnLogin.setBackgroundResource(R.drawable.btn_login_border);
-
-        btnLogin.setOnClickListener(v -> {
-            // TODO: Implement actual login logic
-            Toast.makeText(this, "Acceder", Toast.LENGTH_SHORT).show();
+    private void setupAccederButton() {
+        findViewById(R.id.btnCreateAcceder).setOnClickListener(v -> {
+            // TODO: Implement actual account creation logic
+            Toast.makeText(this, "Cuenta creada", Toast.LENGTH_SHORT).show();
         });
     }
 
-    private void setupCreateAccountText() {
-        TextView tvCreateAccount = findViewById(R.id.tvCreateAccount);
+    private void setupAlreadyHaveAccountText() {
+        TextView tvAlready = findViewById(R.id.tvCreateAlreadyAccount);
 
-        String fullText = getString(R.string.or_text) + " " + getString(R.string.create_account);
+        String prefix = getString(R.string.already_have_account) + " ";
+        String link = getString(R.string.acceder_link);
+        String fullText = prefix + link;
+
         SpannableString spannable = new SpannableString(fullText);
-
-        // Find the "Crear Cuenta" part and make it clickable and green
-        int start = fullText.indexOf(getString(R.string.create_account));
-        int end = start + getString(R.string.create_account).length();
+        int start = prefix.length();
+        int end = fullText.length();
 
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-                // Navigate to registration form
-                Intent intent = new Intent(MainActivity.this, FormActivity.class);
-                startActivity(intent);
+                // Go back to login
+                finish();
             }
 
             @Override
@@ -76,9 +70,8 @@ public class MainActivity extends AppCompatActivity {
         };
 
         spannable.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        tvCreateAccount.setText(spannable);
-        tvCreateAccount.setMovementMethod(LinkMovementMethod.getInstance());
-        tvCreateAccount.setHighlightColor(Color.TRANSPARENT);
+        tvAlready.setText(spannable);
+        tvAlready.setMovementMethod(LinkMovementMethod.getInstance());
+        tvAlready.setHighlightColor(Color.TRANSPARENT);
     }
 }

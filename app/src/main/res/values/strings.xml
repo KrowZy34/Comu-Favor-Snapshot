@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">ComuFavor</string>
+
+    <!-- Login screen -->
+    <string name="login_title">Name</string>
+    <string name="login_tagline">Una buena forma de\nconseguir ingresos</string>
+    <string name="label_email">Correo electrónico</string>
+    <string name="label_password">Contraseña</string>
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="remember_device">Recordar en este dispositivo</string>
+    <string name="btn_login">Acceder</string>
+    <string name="or_text">o</string>
+    <string name="create_account">Crear Cuenta</string>
+
+    <!-- Registration form screen -->
+    <string name="form_app_title">M name</string>
+    <string name="form_title">Ingresa tus datos</string>
+    <string name="label_nombres">Nombres:</string>
+    <string name="label_apellidos">Apellidos:</string>
+    <string name="label_edad">Edad:</string>
+    <string name="label_celular">Celular:</string>
+    <string name="label_nacionalidad">Nacionalidad:</string>
+    <string name="label_ciudad">Ciudad:</string>
+    <string name="label_distrito">Distrito:</string>
+    <string name="accept_terms">Aceptar términos de uso</string>
+    <string name="btn_siguiente">Siguiente</string>
+    <string name="already_have_account">¿Ya tengo una cuenta?</string>
+    <string name="acceder_link">Acceder</string>
+    <string name="terms_title">Términos de uso:</string>
+    <string name="terms_body">El formulario de registro es obligatorio y permite recopilar la información necesaria para facilitar la búsqueda de oportunidades de trabajo informal disponibles en su zona geográfica.</string>
+
+    <!-- Create account screen -->
+    <string name="crear_cuenta_title">Crear cuenta</string>
+    <string name="app_description">Aplicación móvil dirigida a adultos que buscan generar ingresos ofreciendo servicios informales, facilitando el contacto con clientes, promoviendo el autoempleo, la inclusión económica y el desarrollo dentro de sus comunidades.</string>
 </resources>
