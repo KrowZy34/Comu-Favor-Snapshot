@@ -46,4 +46,8 @@
     <string name="error_email_exists">Ya existe una cuenta con este correo</string>
     <string name="error_password_short">La contraseña debe tener al menos 6 caracteres</string>
     <string name="success_account_created">¡Cuenta creada exitosamente!</string>
+
+    <!-- Onboarding -->
+    <string name="btn_onboarding_next">Siguiente</string>
+    <string name="btn_onboarding_start">Comenzar</string>
 </resources>
