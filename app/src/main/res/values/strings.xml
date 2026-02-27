@@ -2,7 +2,7 @@
     <string name="app_name">ComuFavor</string>
 
     <!-- Login screen -->
-    <string name="login_title">Name</string>
+    <string name="login_title">ComuFavor</string>
     <string name="login_tagline">Una buena forma de\nconseguir ingresos</string>
     <string name="label_email">Correo electrónico</string>
     <string name="label_password">Contraseña</string>
@@ -14,7 +14,7 @@
     <string name="create_account">Crear Cuenta</string>
 
     <!-- Registration form screen -->
-    <string name="form_app_title">M name</string>
+    <string name="form_app_title">ComuFavor</string>
     <string name="form_title">Ingresa tus datos</string>
     <string name="label_nombres">Nombres:</string>
     <string name="label_apellidos">Apellidos:</string>

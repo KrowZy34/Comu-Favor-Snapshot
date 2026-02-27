@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -23,11 +22,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.snackbar.Snackbar;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
     private CheckBox cbRemember;
     private UserPreferences userPrefs;
+    private View rootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +46,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_main);
+        rootView = findViewById(R.id.main);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        // Handle both system bars AND keyboard (IME) insets
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            Insets ime = insets.getInsets(WindowInsetsCompat.Type.ime());
+            // Use the larger of system bar bottom or IME bottom
+            int bottomPadding = Math.max(systemBars.bottom, ime.bottom);
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, bottomPadding);
             return insets;
         });
 
@@ -61,23 +68,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupLoginButton() {
         Button btnLogin = findViewById(R.id.btnLogin);
-        btnLogin.setBackgroundResource(R.drawable.btn_login_border);
 
         btnLogin.setOnClickListener(v -> {
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString();
 
-            // Validation
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, R.string.error_empty_fields, Toast.LENGTH_SHORT).show();
+                showSnackbar(getString(R.string.error_empty_fields));
                 return;
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                Toast.makeText(this, R.string.error_invalid_email, Toast.LENGTH_SHORT).show();
+                showSnackbar(getString(R.string.error_invalid_email));
                 return;
             }
 
-            // Check credentials
             if (userPrefs.validateLogin(email, password)) {
                 userPrefs.setLoggedIn(email);
                 if (cbRemember.isChecked()) {
@@ -87,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 navigateToHome();
             } else {
-                Toast.makeText(this, R.string.error_invalid_credentials, Toast.LENGTH_SHORT).show();
+                showSnackbar(getString(R.string.error_invalid_credentials));
             }
         });
     }
@@ -127,5 +131,12 @@ public class MainActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
+    }
+
+    private void showSnackbar(String message) {
+        Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
+        snackbar.setBackgroundTint(getResources().getColor(R.color.dark_background, getTheme()));
+        snackbar.setTextColor(getResources().getColor(R.color.green_accent, getTheme()));
+        snackbar.show();
     }
 }

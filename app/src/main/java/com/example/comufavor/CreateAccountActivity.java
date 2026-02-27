@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -22,13 +21,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.snackbar.Snackbar;
+
 public class CreateAccountActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
     private CheckBox cbRemember;
     private UserPreferences userPrefs;
+    private View rootView;
 
-    // Form data from previous screen
     private String nombres, apellidos, edad, celular, nacionalidad, ciudad, distrito;
 
     @Override
@@ -37,15 +38,19 @@ public class CreateAccountActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_create_account);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.createAccountMain), (v, insets) -> {
+        rootView = findViewById(R.id.createAccountMain);
+
+        // Handle both system bars AND keyboard (IME) insets
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            Insets ime = insets.getInsets(WindowInsetsCompat.Type.ime());
+            int bottomPadding = Math.max(systemBars.bottom, ime.bottom);
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, bottomPadding);
             return insets;
         });
 
         userPrefs = new UserPreferences(this);
 
-        // Retrieve form data from Intent
         Intent data = getIntent();
         nombres = data.getStringExtra("nombres");
         apellidos = data.getStringExtra("apellidos");
@@ -68,25 +73,23 @@ public class CreateAccountActivity extends AppCompatActivity {
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString();
 
-            // Validation
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, R.string.error_empty_fields, Toast.LENGTH_SHORT).show();
+                showSnackbar(getString(R.string.error_empty_fields));
                 return;
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                Toast.makeText(this, R.string.error_invalid_email, Toast.LENGTH_SHORT).show();
+                showSnackbar(getString(R.string.error_invalid_email));
                 return;
             }
             if (password.length() < 6) {
-                Toast.makeText(this, R.string.error_password_short, Toast.LENGTH_SHORT).show();
+                showSnackbar(getString(R.string.error_password_short));
                 return;
             }
             if (userPrefs.userExists(email)) {
-                Toast.makeText(this, R.string.error_email_exists, Toast.LENGTH_SHORT).show();
+                showSnackbar(getString(R.string.error_email_exists));
                 return;
             }
 
-            // Save user
             userPrefs.saveUser(email, password,
                     nombres != null ? nombres : "",
                     apellidos != null ? apellidos : "",
@@ -96,19 +99,19 @@ public class CreateAccountActivity extends AppCompatActivity {
                     ciudad != null ? ciudad : "",
                     distrito != null ? distrito : "");
 
-            // Set session
             userPrefs.setLoggedIn(email);
             if (cbRemember.isChecked()) {
                 userPrefs.setRemembered(email);
             }
 
-            Toast.makeText(this, R.string.success_account_created, Toast.LENGTH_SHORT).show();
+            showSnackbar(getString(R.string.success_account_created));
 
-            // Navigate to Home
-            Intent intent = new Intent(CreateAccountActivity.this, HomeActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
+            rootView.postDelayed(() -> {
+                Intent intent = new Intent(CreateAccountActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }, 800);
         });
     }
 
@@ -126,7 +129,6 @@ public class CreateAccountActivity extends AppCompatActivity {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-                // Go all the way back to login
                 Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
@@ -145,5 +147,12 @@ public class CreateAccountActivity extends AppCompatActivity {
         tvAlready.setText(spannable);
         tvAlready.setMovementMethod(LinkMovementMethod.getInstance());
         tvAlready.setHighlightColor(Color.TRANSPARENT);
+    }
+
+    private void showSnackbar(String message) {
+        Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
+        snackbar.setBackgroundTint(getResources().getColor(R.color.dark_background, getTheme()));
+        snackbar.setTextColor(getResources().getColor(R.color.green_accent, getTheme()));
+        snackbar.show();
     }
 }

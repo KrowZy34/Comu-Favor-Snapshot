@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -22,10 +21,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.snackbar.Snackbar;
+
 public class FormActivity extends AppCompatActivity {
 
     private EditText etNombres, etApellidos, etEdad, etCelular;
     private Spinner spinnerNacionalidad, spinnerCiudad, spinnerDistrito;
+    private View rootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +35,14 @@ public class FormActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_form);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.formMain), (v, insets) -> {
+        rootView = findViewById(R.id.formMain);
+
+        // Handle both system bars AND keyboard (IME) insets
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            Insets ime = insets.getInsets(WindowInsetsCompat.Type.ime());
+            int bottomPadding = Math.max(systemBars.bottom, ime.bottom);
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, bottomPadding);
             return insets;
         });
 
@@ -103,7 +110,6 @@ public class FormActivity extends AppCompatActivity {
 
     private void setupSiguienteButton() {
         findViewById(R.id.btnSiguiente).setOnClickListener(v -> {
-            // Validate fields
             String nombres = etNombres.getText().toString().trim();
             String apellidos = etApellidos.getText().toString().trim();
             String edad = etEdad.getText().toString().trim();
@@ -113,16 +119,15 @@ public class FormActivity extends AppCompatActivity {
             String distrito = spinnerDistrito.getSelectedItem().toString();
 
             if (nombres.isEmpty() || apellidos.isEmpty() || edad.isEmpty() || celular.isEmpty()) {
-                Toast.makeText(this, R.string.error_empty_fields, Toast.LENGTH_SHORT).show();
+                showSnackbar(getString(R.string.error_empty_fields));
                 return;
             }
             if (nacionalidad.equals("Seleccionar...") || ciudad.equals("Seleccionar...")
                     || distrito.equals("Seleccionar...")) {
-                Toast.makeText(this, R.string.error_empty_fields, Toast.LENGTH_SHORT).show();
+                showSnackbar(getString(R.string.error_empty_fields));
                 return;
             }
 
-            // Pass form data to CreateAccountActivity
             Intent intent = new Intent(FormActivity.this, CreateAccountActivity.class);
             intent.putExtra("nombres", nombres);
             intent.putExtra("apellidos", apellidos);
@@ -133,5 +138,12 @@ public class FormActivity extends AppCompatActivity {
             intent.putExtra("distrito", distrito);
             startActivity(intent);
         });
+    }
+
+    private void showSnackbar(String message) {
+        Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
+        snackbar.setBackgroundTint(getResources().getColor(R.color.dark_background, getTheme()));
+        snackbar.setTextColor(getResources().getColor(R.color.green_accent, getTheme()));
+        snackbar.show();
     }
 }

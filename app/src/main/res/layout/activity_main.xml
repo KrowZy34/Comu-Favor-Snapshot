@@ -27,15 +27,17 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:scrollbars="none">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
-            android:paddingTop="60dp"
-            android:paddingBottom="40dp">
+            android:paddingTop="48dp"
+            android:paddingBottom="32dp">
 
             <!-- App name / title -->
             <TextView
@@ -44,45 +46,42 @@
                 android:layout_height="wrap_content"
                 android:text="@string/login_title"
                 android:textColor="@color/green_accent"
-                android:textSize="32sp"
+                android:textSize="30sp"
                 android:textStyle="bold|italic"
-                android:fontFamily="sans-serif"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:fontFamily="sans-serif" />
+
+            <!-- Spacer that compresses when keyboard opens -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <!-- Tagline -->
             <TextView
                 android:id="@+id/tvTagline"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/login_tagline"
                 android:textColor="@color/white"
-                android:textSize="28sp"
+                android:textSize="26sp"
                 android:textStyle="bold"
                 android:lineSpacingExtra="4dp"
                 android:fontFamily="sans-serif"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvTitle"
-                android:layout_marginTop="240dp" />
+                android:layout_marginBottom="28dp" />
 
             <!-- Email label -->
             <TextView
-                android:id="@+id/tvEmailLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_email"
                 android:textColor="@color/green_accent"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvTagline"
-                android:layout_marginTop="32dp" />
+                android:textSize="13sp" />
 
             <!-- Email input -->
             <EditText
                 android:id="@+id/etEmail"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
                 android:hint="@string/hint_email"
                 android:textColorHint="@color/input_hint"
                 android:textColor="@color/green_accent"
@@ -92,38 +91,28 @@
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
                 android:autofillHints="emailAddress"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvEmailLabel"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="2dp" />
 
             <!-- Email underline -->
             <View
-                android:id="@+id/emailUnderline"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/green_accent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etEmail" />
+                android:background="@color/green_accent" />
 
             <!-- Password label -->
             <TextView
-                android:id="@+id/tvPasswordLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_password"
                 android:textColor="@color/green_accent"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emailUnderline"
-                android:layout_marginTop="20dp" />
+                android:textSize="13sp"
+                android:layout_marginTop="16dp" />
 
             <!-- Password input -->
             <EditText
                 android:id="@+id/etPassword"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
                 android:hint="@string/hint_password"
                 android:textColorHint="@color/input_hint"
                 android:textColor="@color/green_accent"
@@ -133,20 +122,13 @@
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
                 android:autofillHints="password"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvPasswordLabel"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="2dp" />
 
             <!-- Password underline -->
             <View
-                android:id="@+id/passwordUnderline"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/green_accent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etPassword" />
+                android:background="@color/green_accent" />
 
             <!-- Remember checkbox -->
             <CheckBox
@@ -155,48 +137,37 @@
                 android:layout_height="wrap_content"
                 android:text="@string/remember_device"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:buttonTint="@color/green_accent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/passwordUnderline"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="10dp" />
 
             <!-- Login button -->
             <Button
                 android:id="@+id/btnLogin"
-                android:layout_width="0dp"
-                android:layout_height="52dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:text="@string/btn_login"
                 android:textColor="@color/green_accent"
                 android:textSize="18sp"
                 android:textAllCaps="false"
-                android:background="@android:color/transparent"
+                android:background="@drawable/btn_login_border"
                 android:stateListAnimator="@null"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cbRemember"
-                android:layout_marginTop="28dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp" />
-
-            <!-- Login button border (drawn programmatically via shape drawable) -->
-            <!-- We use a separate shape for the border -->
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp" />
 
             <!-- "o Crear Cuenta" -->
             <TextView
                 android:id="@+id/tvCreateAccount"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:textSize="14sp"
                 android:textColor="@color/white"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnLogin"
-                android:layout_marginTop="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="8dp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
 
 </FrameLayout>
