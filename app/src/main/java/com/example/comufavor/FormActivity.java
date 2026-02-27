@@ -10,6 +10,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,18 +24,28 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class FormActivity extends AppCompatActivity {
 
+    private EditText etNombres, etApellidos, etEdad, etCelular;
+    private Spinner spinnerNacionalidad, spinnerCiudad, spinnerDistrito;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_form);
 
-        // Handle edge-to-edge insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.formMain), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        etNombres = findViewById(R.id.etNombres);
+        etApellidos = findViewById(R.id.etApellidos);
+        etEdad = findViewById(R.id.etEdad);
+        etCelular = findViewById(R.id.etCelular);
+        spinnerNacionalidad = findViewById(R.id.spinnerNacionalidad);
+        spinnerCiudad = findViewById(R.id.spinnerCiudad);
+        spinnerDistrito = findViewById(R.id.spinnerDistrito);
 
         setupSpinners();
         setupAlreadyHaveAccountText();
@@ -42,23 +53,17 @@ public class FormActivity extends AppCompatActivity {
     }
 
     private void setupSpinners() {
-        // Nacionalidad
-        Spinner spinnerNacionalidad = findViewById(R.id.spinnerNacionalidad);
         String[] nacionalidades = { "Seleccionar...", "Peruana", "Colombiana", "Venezolana", "Ecuatoriana", "Boliviana",
                 "Otra" };
         ArrayAdapter<String> adapterNac = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, nacionalidades);
         spinnerNacionalidad.setAdapter(adapterNac);
 
-        // Ciudad
-        Spinner spinnerCiudad = findViewById(R.id.spinnerCiudad);
         String[] ciudades = { "Seleccionar...", "Lima", "Arequipa", "Trujillo", "Cusco", "Piura", "Otra" };
         ArrayAdapter<String> adapterCiu = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, ciudades);
         spinnerCiudad.setAdapter(adapterCiu);
 
-        // Distrito
-        Spinner spinnerDistrito = findViewById(R.id.spinnerDistrito);
         String[] distritos = { "Seleccionar...", "Miraflores", "San Isidro", "Surco", "Barranco", "San Borja", "Otro" };
         ArrayAdapter<String> adapterDis = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, distritos);
@@ -79,7 +84,6 @@ public class FormActivity extends AppCompatActivity {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-                // Navigate back to login
                 finish();
             }
 
@@ -99,8 +103,34 @@ public class FormActivity extends AppCompatActivity {
 
     private void setupSiguienteButton() {
         findViewById(R.id.btnSiguiente).setOnClickListener(v -> {
-            // Navigate to create account screen
+            // Validate fields
+            String nombres = etNombres.getText().toString().trim();
+            String apellidos = etApellidos.getText().toString().trim();
+            String edad = etEdad.getText().toString().trim();
+            String celular = etCelular.getText().toString().trim();
+            String nacionalidad = spinnerNacionalidad.getSelectedItem().toString();
+            String ciudad = spinnerCiudad.getSelectedItem().toString();
+            String distrito = spinnerDistrito.getSelectedItem().toString();
+
+            if (nombres.isEmpty() || apellidos.isEmpty() || edad.isEmpty() || celular.isEmpty()) {
+                Toast.makeText(this, R.string.error_empty_fields, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (nacionalidad.equals("Seleccionar...") || ciudad.equals("Seleccionar...")
+                    || distrito.equals("Seleccionar...")) {
+                Toast.makeText(this, R.string.error_empty_fields, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Pass form data to CreateAccountActivity
             Intent intent = new Intent(FormActivity.this, CreateAccountActivity.class);
+            intent.putExtra("nombres", nombres);
+            intent.putExtra("apellidos", apellidos);
+            intent.putExtra("edad", edad);
+            intent.putExtra("celular", celular);
+            intent.putExtra("nacionalidad", nacionalidad);
+            intent.putExtra("ciudad", ciudad);
+            intent.putExtra("distrito", distrito);
             startActivity(intent);
         });
     }

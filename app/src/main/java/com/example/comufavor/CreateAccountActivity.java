@@ -1,5 +1,6 @@
 package com.example.comufavor;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -7,7 +8,10 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Patterns;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +23,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class CreateAccountActivity extends AppCompatActivity {
+
+    private EditText etEmail, etPassword;
+    private CheckBox cbRemember;
+    private UserPreferences userPrefs;
+
+    // Form data from previous screen
+    private String nombres, apellidos, edad, celular, nacionalidad, ciudad, distrito;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +43,72 @@ public class CreateAccountActivity extends AppCompatActivity {
             return insets;
         });
 
+        userPrefs = new UserPreferences(this);
+
+        // Retrieve form data from Intent
+        Intent data = getIntent();
+        nombres = data.getStringExtra("nombres");
+        apellidos = data.getStringExtra("apellidos");
+        edad = data.getStringExtra("edad");
+        celular = data.getStringExtra("celular");
+        nacionalidad = data.getStringExtra("nacionalidad");
+        ciudad = data.getStringExtra("ciudad");
+        distrito = data.getStringExtra("distrito");
+
+        etEmail = findViewById(R.id.etCreateEmail);
+        etPassword = findViewById(R.id.etCreatePassword);
+        cbRemember = findViewById(R.id.cbCreateRemember);
+
         setupAccederButton();
         setupAlreadyHaveAccountText();
     }
 
     private void setupAccederButton() {
         findViewById(R.id.btnCreateAcceder).setOnClickListener(v -> {
-            // TODO: Implement actual account creation logic
-            Toast.makeText(this, "Cuenta creada", Toast.LENGTH_SHORT).show();
+            String email = etEmail.getText().toString().trim();
+            String password = etPassword.getText().toString();
+
+            // Validation
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, R.string.error_empty_fields, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(this, R.string.error_invalid_email, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (password.length() < 6) {
+                Toast.makeText(this, R.string.error_password_short, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (userPrefs.userExists(email)) {
+                Toast.makeText(this, R.string.error_email_exists, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Save user
+            userPrefs.saveUser(email, password,
+                    nombres != null ? nombres : "",
+                    apellidos != null ? apellidos : "",
+                    edad != null ? edad : "",
+                    celular != null ? celular : "",
+                    nacionalidad != null ? nacionalidad : "",
+                    ciudad != null ? ciudad : "",
+                    distrito != null ? distrito : "");
+
+            // Set session
+            userPrefs.setLoggedIn(email);
+            if (cbRemember.isChecked()) {
+                userPrefs.setRemembered(email);
+            }
+
+            Toast.makeText(this, R.string.success_account_created, Toast.LENGTH_SHORT).show();
+
+            // Navigate to Home
+            Intent intent = new Intent(CreateAccountActivity.this, HomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         });
     }
 
@@ -57,7 +126,10 @@ public class CreateAccountActivity extends AppCompatActivity {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-                // Go back to login
+                // Go all the way back to login
+                Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 finish();
             }
 

@@ -33,4 +33,17 @@
     <!-- Create account screen -->
     <string name="crear_cuenta_title">Crear cuenta</string>
     <string name="app_description">Aplicación móvil dirigida a adultos que buscan generar ingresos ofreciendo servicios informales, facilitando el contacto con clientes, promoviendo el autoempleo, la inclusión económica y el desarrollo dentro de sus comunidades.</string>
+
+    <!-- Home screen -->
+    <string name="welcome_message">¡Bienvenido, %1$s!</string>
+    <string name="home_subtitle">Has iniciado sesión exitosamente</string>
+    <string name="btn_logout">Cerrar sesión</string>
+
+    <!-- Validation -->
+    <string name="error_empty_fields">Por favor completa todos los campos</string>
+    <string name="error_invalid_email">Correo electrónico inválido</string>
+    <string name="error_invalid_credentials">Correo o contraseña incorrectos</string>
+    <string name="error_email_exists">Ya existe una cuenta con este correo</string>
+    <string name="error_password_short">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="success_account_created">¡Cuenta creada exitosamente!</string>
 </resources>
