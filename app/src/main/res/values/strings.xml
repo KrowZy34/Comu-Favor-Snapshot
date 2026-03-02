@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">ComuFavor</string>
+    <string name="app_name">Krowdar</string>
 
     <!-- Login screen -->
-    <string name="login_title">ComuFavor</string>
+    <string name="login_title">Krowdar</string>
     <string name="login_tagline">Una buena forma de\nconseguir ingresos</string>
     <string name="label_email">Correo electrónico</string>
     <string name="label_password">Contraseña</string>
@@ -14,7 +14,7 @@
     <string name="create_account">Crear Cuenta</string>
 
     <!-- Registration form screen -->
-    <string name="form_app_title">ComuFavor</string>
+    <string name="form_app_title">Krowdar</string>
     <string name="form_title">Ingresa tus datos</string>
     <string name="label_nombres">Nombres:</string>
     <string name="label_apellidos">Apellidos:</string>
@@ -34,10 +34,12 @@
     <string name="crear_cuenta_title">Crear cuenta</string>
     <string name="app_description">Aplicación móvil dirigida a adultos que buscan generar ingresos ofreciendo servicios informales, facilitando el contacto con clientes, promoviendo el autoempleo, la inclusión económica y el desarrollo dentro de sus comunidades.</string>
 
-    <!-- Home screen -->
+    <!-- Home / Welcome screen -->
     <string name="welcome_message">¡Bienvenido, %1$s!</string>
     <string name="home_subtitle">Has iniciado sesión exitosamente</string>
     <string name="btn_logout">Cerrar sesión</string>
+    <string name="btn_siguiente_arrow">Siguiente   →</string>
+    <string name="need_help">Necesitas ayuda?</string>
 
     <!-- Validation -->
     <string name="error_empty_fields">Por favor completa todos los campos</string>

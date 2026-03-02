@@ -39,16 +39,32 @@
             android:paddingTop="48dp"
             android:paddingBottom="32dp">
 
-            <!-- App name / title -->
-            <TextView
-                android:id="@+id/tvTitle"
+            <!-- App logo + title row -->
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/login_title"
-                android:textColor="@color/green_accent"
-                android:textSize="30sp"
-                android:textStyle="bold|italic"
-                android:fontFamily="sans-serif" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/krowdar_logo"
+                    android:contentDescription="@string/app_name"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_title"
+                    android:textColor="@color/green_accent"
+                    android:textSize="30sp"
+                    android:textStyle="bold|italic"
+                    android:fontFamily="sans-serif" />
+
+            </LinearLayout>
 
             <!-- Spacer that compresses when keyboard opens -->
             <View
