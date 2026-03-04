@@ -7,4 +7,23 @@
     <color name="input_hint">#80FFFFFF</color>
     <color name="dark_background">#FF1A1A1A</color>
     <color name="transparent">#00000000</color>
+    
+    <!-- Homepage colors -->
+    <color name="tab_destacados">#FFC107</color>
+    <color name="tab_recomendados">#AB47BC</color>
+    <color name="tab_recientes">#4CAF50</color>
+    <color name="tab_habilidades">#29B6F6</color>
+    <color name="tab_ayuda">#FFFFFF</color>
+    <color name="tab_cerrar_sesion">#EF5350</color>
+    <color name="price_text">#EF5350</color>
+    <color name="card_border">#333333</color>
+
+    <!-- Rec & Post colors -->
+    <color name="rec_cyan">#26C6DA</color>
+    <color name="rec_cyan_dark">#006064</color>
+    <color name="post_red">#EF5350</color>
+    <color name="post_red_dark">#4A0E0E</color>
+    <color name="price_green">#4CAF50</color> <!-- In the screenshots the price text is green -->
+    <color name="orange_red_accent">#FF4500</color>
+    <color name="text_secondary">#80FFFFFF</color>
 </resources>

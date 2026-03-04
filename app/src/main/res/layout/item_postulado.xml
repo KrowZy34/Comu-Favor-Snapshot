@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp">
+
+    <!-- Item content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:gravity="center_vertical"
+        android:baselineAligned="false">
+
+        <!-- Foto -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+            <View
+                android:id="@+id/ivFoto"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_circle_outline" />
+        </FrameLayout>
+
+        <!-- Nombre -->
+        <TextView
+            android:id="@+id/tvNombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="Sandro Cha..."
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAlignment="center" />
+
+        <!-- Calificación -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center">
+            
+            <TextView
+                android:id="@+id/tvCalificacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3.5"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:layout_marginEnd="4dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_star_outline"
+                android:contentDescription="Star" />
+        </LinearLayout>
+
+        <!-- Guardar (Bookmark) Icon -->
+        <ImageView
+            android:id="@+id/ivGuardar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_bookmark"
+            app:tint="@color/white"
+            android:contentDescription="Guardar postulante" />
+
+    </LinearLayout>
+
+    <!-- Divider under each item -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#1AFFFFFF" /> <!-- Very faint divider as seen in mockup -->
+
+</LinearLayout>

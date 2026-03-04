@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card_post"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp">
+
+    <TextView
+        android:id="@+id/tvJobTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Limpieza de local 54 m²"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tvJobLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lima, Independencia"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/tvJobPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="S/negociable"
+        android:textColor="@color/price_green"
+        android:textSize="16sp" />
+
+</LinearLayout>

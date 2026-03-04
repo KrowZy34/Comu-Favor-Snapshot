@@ -13,25 +13,15 @@
     <string name="or_text">o</string>
     <string name="create_account">Crear Cuenta</string>
 
-    <!-- Registration form screen -->
+    <!-- Registration screen -->
     <string name="form_app_title">Krowdar</string>
-    <string name="form_title">Ingresa tus datos</string>
-    <string name="label_nombres">Nombres:</string>
-    <string name="label_apellidos">Apellidos:</string>
-    <string name="label_edad">Edad:</string>
-    <string name="label_celular">Celular:</string>
-    <string name="label_nacionalidad">Nacionalidad:</string>
-    <string name="label_ciudad">Ciudad:</string>
-    <string name="label_distrito">Distrito:</string>
-    <string name="accept_terms">Aceptar términos de uso</string>
-    <string name="btn_siguiente">Siguiente</string>
+    <string name="crear_cuenta_title">Crear cuenta</string>
+    <string name="label_dni">Documento DNI</string>
+    <string name="hint_dni">Documento DNI</string>
+    <string name="accept_terms">Acepto los Términos y Condiciones.</string>
     <string name="already_have_account">¿Ya tengo una cuenta?</string>
     <string name="acceder_link">Acceder</string>
-    <string name="terms_title">Términos de uso:</string>
-    <string name="terms_body">El formulario de registro es obligatorio y permite recopilar la información necesaria para facilitar la búsqueda de oportunidades de trabajo informal disponibles en su zona geográfica.</string>
-
-    <!-- Create account screen -->
-    <string name="crear_cuenta_title">Crear cuenta</string>
+    <string name="terms_privacy">Tus datos son necesarios para verificar tu identidad y confirmar que cumples con la edad requerida para usar la aplicación. La información será tratada con confidencialidad y protegida con medidas de seguridad adecuadas.</string>
     <string name="app_description">Aplicación móvil dirigida a adultos que buscan generar ingresos ofreciendo servicios informales, facilitando el contacto con clientes, promoviendo el autoempleo, la inclusión económica y el desarrollo dentro de sus comunidades.</string>
 
     <!-- Home / Welcome screen -->
@@ -47,9 +37,83 @@
     <string name="error_invalid_credentials">Correo o contraseña incorrectos</string>
     <string name="error_email_exists">Ya existe una cuenta con este correo</string>
     <string name="error_password_short">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="error_accept_terms">Debes aceptar los Términos y Condiciones</string>
     <string name="success_account_created">¡Cuenta creada exitosamente!</string>
 
-    <!-- Onboarding -->
-    <string name="btn_onboarding_next">Siguiente</string>
-    <string name="btn_onboarding_start">Comenzar</string>
+    <!-- Payment methods -->
+    <string name="payment_title">Métodos de pago</string>
+    <string name="payment_skip">Omitir</string>
+    <string name="payment_cards">Tarjetas</string>
+    <string name="payment_add_card">Agrega Tarjetas</string>
+    <string name="payment_card_number">Número de tarjeta</string>
+    <string name="payment_expiry">Vencimiento</string>
+    <string name="payment_cvv">CVV</string>
+    <string name="payment_others">Otros</string>
+    <string name="payment_yape">Yape</string>
+    <string name="payment_paypal">PayPal</string>
+    <string name="payment_mercadopago">Mercado Pago</string>
+    <string name="payment_efectivo">Efectivo</string>
+    <string name="payment_selected">Método seleccionado: %1$s</string>
+    <string name="payment_btn_add_card">Agregar tarjeta</string>
+    <string name="payment_btn_card_added">✓ Tarjeta agregada</string>
+    <string name="payment_btn_next">Siguiente</string>
+    
+    <!-- Homepage / Feed -->
+    <string name="search_hint">Busca a tu preferencia</string>
+    <string name="tab_destacados">destacados</string>
+    <string name="tab_recomendados">Recomendados</string>
+    <string name="tab_recientes">Recientes</string>
+    <string name="tab_habilidades">Mis habilidades</string>
+    <string name="tab_ayuda">ayuda?</string>
+    <string name="tab_cerrar_sesion">Cerrar sesion</string>
+    <string name="nav_rec_post">Rec &amp; Post</string>
+    <string name="nav_mensajes">Mensajes</string>
+    <string name="nav_inicio">Inicio</string>
+    <string name="nav_guardados">Guardados</string>
+    <string name="nav_perfil">Perfil</string>
+
+    <!-- Rec & Post -->
+    <string name="rec_post_reclutando">Reclutando</string>
+    <string name="rec_post_divider"> / </string>
+    <string name="rec_post_postulando">Postulando</string>
+    <string name="rec_post_add_job">Agregar trabajo +</string>
+    <string name="rec_post_hoy">Hoy</string>
+    <string name="rec_post_last_week">Semana pasada</string>
+
+    <!-- Postulados -->
+    <string name="postulados_title">postulados</string>
+    <string name="postulados_header_foto">Foto</string>
+    <string name="postulados_header_nombre">Nombre</string>
+    <string name="postulados_header_calificacion">Calificación</string>
+
+    <!-- Detalle Postulante -->
+    <string name="detalle_mi_descripcion">Mi descripción:</string>
+    <string name="detalle_mas">mas</string>
+    <string name="detalle_aceptar">Reclutar</string>
+    <string name="detalle_rechazar">Rechazar</string>
+
+    <!-- Detalle Empleo (Postulando) -->
+    <string name="empleo_empleador">Empleador</string>
+    <string name="empleo_pago">Pago</string>
+    <string name="empleo_informacion">Información</string>
+    <string name="empleo_menu_reportar">Reportar</string>
+    <string name="empleo_menu_guardar">Guardar</string>
+
+    <!-- Asignado / Reclutar -->
+    <string name="asignado_title">Fue asignado a</string>
+    <string name="asignado_cancelar">Cancelar</string>
+    <string name="asignado_finalizar_trabajo">Finalizar trabajo</string>
+    <string name="asignado_califica">Califica al trabajador</string>
+
+    <!-- Agregar Propuesta -->
+    <string name="add_job_title">Agregando propuesta</string>
+    <string name="add_job_label_title">Titulo:</string>
+    <string name="add_job_hint_title">Nombre representativo</string>
+    <string name="add_job_label_location">Lugar:</string>
+    <string name="add_job_hint_location">Lima,Independecia</string>
+    <string name="add_job_label_payment">Pago:</string>
+    <string name="add_job_hint_payment">S/00.00</string>
+    <string name="add_job_label_info">Información:</string>
+    <string name="add_job_hint_info">Explica el trabajo lo mejor posible</string>
+    <string name="add_job_button">Publicar Propuesta</string>
 </resources>

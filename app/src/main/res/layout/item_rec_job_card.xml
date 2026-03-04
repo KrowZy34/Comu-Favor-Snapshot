@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card_rec"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <ImageView
+            android:id="@+id/ivMoreMenu"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_more_vert"
+            android:contentDescription="More options" />
+
+        <TextView
+            android:id="@+id/tvJobTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/ivMoreMenu"
+            android:text="Limpieza de local 54 m²"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvJobLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lima, Independencia"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_marginBottom="12dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvJobPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="S/negociable"
+            android:textColor="@color/price_green"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_applicants_badge"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_user_white"
+                android:layout_marginEnd="6dp" />
+
+            <TextView
+                android:id="@+id/tvApplicantsCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0000"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

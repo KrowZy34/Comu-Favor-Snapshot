@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -30,7 +31,8 @@ public class HomeActivity extends AppCompatActivity {
         userPrefs = new UserPreferences(this);
 
         setupWelcome();
-        setupLogout();
+        setupSiguienteButton();
+        setupBackHandler();
     }
 
     private void setupWelcome() {
@@ -46,20 +48,20 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    private void setupLogout() {
-        findViewById(R.id.btnLogout).setOnClickListener(v -> {
-            userPrefs.logout();
-            userPrefs.clearRemembered();
-            Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    private void setupSiguienteButton() {
+        findViewById(R.id.btnSiguiente).setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, PaymentMethodsActivity.class);
             startActivity(intent);
-            finish();
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        // Prevent going back to login screen — use logout instead
-        moveTaskToBack(true);
+    private void setupBackHandler() {
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Prevent going back to login screen — minimize app instead
+                moveTaskToBack(true);
+            }
+        });
     }
 }

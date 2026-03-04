@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Rounded rect background -->
+    <path
+        android:pathData="M4,2h16a2,2 0,0 1,2 2v16a2,2 0,0 1,-2 2h-16a2,2 0,0 1,-2 -2v-16a2,2 0,0 1,2 -2z"
+        android:fillColor="#444444" />
+    <!-- Plus sign -->
+    <path
+        android:pathData="M12,7v10M7,12h10"
+        android:strokeWidth="2"
+        android:strokeColor="#AAAAAA"
+        android:fillColor="@android:color/transparent" />
+</vector>

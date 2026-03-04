@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/postuladosMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    tools:context=".PostuladosActivity">
+
+    <!-- Top spacing -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/postulados_title"
+                android:textColor="@color/green_accent"
+                android:textSize="24sp"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Table Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/postulados_header_foto"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="@string/postulados_header_nombre"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/postulados_header_calificacion"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textAlignment="center" />
+
+                <!-- Spacer to align with bookmark icon in list items -->
+                <Space
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+            <!-- Main White Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" />
+
+            <!-- RecyclerView for Applicants -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPostulados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:paddingTop="8dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Asignado View (Initially Gone) -->
+    <LinearLayout
+        android:id="@+id/llAsignadoView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_asignado_container"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:visibility="gone">
+
+        <!-- Title and Chat Icon -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/asignado_title"
+                android:textColor="@color/green_accent"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_chat" />
+        </LinearLayout>
+
+        <!-- Red Card with Job and User Info -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_red_outline"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvAsignadoJobTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Limpieza de local 54 m²"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvAsignadoJobLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvAsignadoJobTitle"
+                android:text="Lima, Independencia"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/btnAsignadoCancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="@string/asignado_cancelar"
+                android:textColor="@color/orange_red_accent"
+                android:textSize="18sp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <!-- User Info row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvAsignadoJobLocation"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <View
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/bg_circle_outline"
+                    android:layout_marginEnd="16dp" />
+
+                <TextView
+                    android:id="@+id/tvAsignadoNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sandro Cha..."
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- Finalizar and Califica row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:baselineAligned="false">
+
+            <TextView
+                android:id="@+id/btnFinalizarTrabajo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_green_outline"
+                android:text="@string/asignado_finalizar_trabajo"
+                android:textColor="@color/green_accent"
+                android:textSize="16sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <!-- Stars and Subtitle -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="end">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/asignado_califica"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="4dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_star_outline" app:tint="@color/tab_destacados" />
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_star_outline" app:tint="@color/tab_destacados" />
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_star_outline" app:tint="@color/tab_destacados" />
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_star_outline" app:tint="@color/tab_destacados" />
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_star_outline" app:tint="@color/tab_destacados" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Bottom Navigation -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/card_border" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/black"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:weightSum="5">
+
+        <!-- Rec & Post (Active in this view) -->
+        <LinearLayout
+            android:id="@+id/navRecPost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Active icon in green -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_briefcase"
+                app:tint="@color/green_accent"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nav_rec_post"
+                android:textColor="@color/green_accent"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Mensajes -->
+        <LinearLayout
+            android:id="@+id/navMensajes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_chat"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nav_mensajes"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Inicio (Inactive) -->
+        <LinearLayout
+            android:id="@+id/navInicio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_home_filled"
+                app:tint="@color/white"
+                android:layout_marginBottom="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nav_inicio"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Guardados -->
+        <LinearLayout
+            android:id="@+id/navGuardados"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_bookmark"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nav_guardados"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Perfil -->
+        <LinearLayout
+            android:id="@+id/navPerfil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_profile_outline"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nav_perfil"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

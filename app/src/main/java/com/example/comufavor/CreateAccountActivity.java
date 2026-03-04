@@ -25,12 +25,10 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
-    private EditText etEmail, etPassword;
-    private CheckBox cbRemember;
+    private EditText etDni, etEmail, etPassword;
+    private CheckBox cbTerms;
     private UserPreferences userPrefs;
     private View rootView;
-
-    private String nombres, apellidos, edad, celular, nacionalidad, ciudad, distrito;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,18 +49,10 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         userPrefs = new UserPreferences(this);
 
-        Intent data = getIntent();
-        nombres = data.getStringExtra("nombres");
-        apellidos = data.getStringExtra("apellidos");
-        edad = data.getStringExtra("edad");
-        celular = data.getStringExtra("celular");
-        nacionalidad = data.getStringExtra("nacionalidad");
-        ciudad = data.getStringExtra("ciudad");
-        distrito = data.getStringExtra("distrito");
-
+        etDni = findViewById(R.id.etDni);
         etEmail = findViewById(R.id.etCreateEmail);
         etPassword = findViewById(R.id.etCreatePassword);
-        cbRemember = findViewById(R.id.cbCreateRemember);
+        cbTerms = findViewById(R.id.cbTerms);
 
         setupAccederButton();
         setupAlreadyHaveAccountText();
@@ -70,10 +60,11 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private void setupAccederButton() {
         findViewById(R.id.btnCreateAcceder).setOnClickListener(v -> {
+            String dni = etDni.getText().toString().trim();
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString();
 
-            if (email.isEmpty() || password.isEmpty()) {
+            if (dni.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 showSnackbar(getString(R.string.error_empty_fields));
                 return;
             }
@@ -85,30 +76,23 @@ public class CreateAccountActivity extends AppCompatActivity {
                 showSnackbar(getString(R.string.error_password_short));
                 return;
             }
+            if (!cbTerms.isChecked()) {
+                showSnackbar(getString(R.string.error_accept_terms));
+                return;
+            }
             if (userPrefs.userExists(email)) {
                 showSnackbar(getString(R.string.error_email_exists));
                 return;
             }
 
-            userPrefs.saveUser(email, password,
-                    nombres != null ? nombres : "",
-                    apellidos != null ? apellidos : "",
-                    edad != null ? edad : "",
-                    celular != null ? celular : "",
-                    nacionalidad != null ? nacionalidad : "",
-                    ciudad != null ? ciudad : "",
-                    distrito != null ? distrito : "");
-
+            userPrefs.saveUser(email, password, dni);
             userPrefs.setLoggedIn(email);
-            if (cbRemember.isChecked()) {
-                userPrefs.setRemembered(email);
-            }
 
             showSnackbar(getString(R.string.success_account_created));
 
             // Navigate to Onboarding
             rootView.postDelayed(() -> {
-                Intent intent = new Intent(CreateAccountActivity.this, OnboardingActivity.class);
+                Intent intent = new Intent(CreateAccountActivity.this, HomeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();

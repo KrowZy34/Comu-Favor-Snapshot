@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-                Intent intent = new Intent(MainActivity.this, FormActivity.class);
+                Intent intent = new Intent(MainActivity.this, CreateAccountActivity.class);
                 startActivity(intent);
             }
 

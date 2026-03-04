@@ -31,21 +31,12 @@ public class UserPreferences {
         return usersPrefs.contains(email.toLowerCase().trim());
     }
 
-    public void saveUser(String email, String password,
-            String nombres, String apellidos, String edad,
-            String celular, String nacionalidad,
-            String ciudad, String distrito) {
+    public void saveUser(String email, String password, String dni) {
         try {
             JSONObject user = new JSONObject();
             user.put("email", email.toLowerCase().trim());
             user.put("password", password);
-            user.put("nombres", nombres);
-            user.put("apellidos", apellidos);
-            user.put("edad", edad);
-            user.put("celular", celular);
-            user.put("nacionalidad", nacionalidad);
-            user.put("ciudad", ciudad);
-            user.put("distrito", distrito);
+            user.put("dni", dni);
 
             usersPrefs.edit()
                     .putString(email.toLowerCase().trim(), user.toString())
@@ -79,7 +70,13 @@ public class UserPreferences {
 
         try {
             JSONObject user = new JSONObject(json);
-            return user.getString("nombres");
+            // Use the part before @ as display name
+            String storedEmail = user.getString("email");
+            int atIndex = storedEmail.indexOf("@");
+            if (atIndex > 0) {
+                return storedEmail.substring(0, 1).toUpperCase() + storedEmail.substring(1, atIndex);
+            }
+            return storedEmail;
         } catch (JSONException e) {
             return "";
         }

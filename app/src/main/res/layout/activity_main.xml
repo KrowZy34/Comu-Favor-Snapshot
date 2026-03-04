@@ -48,8 +48,8 @@
 
                 <ImageView
                     android:id="@+id/ivLogo"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:src="@drawable/krowdar_logo"
                     android:contentDescription="@string/app_name"
                     android:layout_marginEnd="8dp" />

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/feedMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    tools:context=".FeedActivity">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="48dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_menu_green"
+            android:contentDescription="Menu" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/bg_search_bar"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:hint="@string/search_hint"
+                android:textColorHint="@color/card_border"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_search"
+                android:contentDescription="Search" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Main Content Area: Lateral Menu + RecyclerView -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <!-- Lateral Menu -->
+        <ScrollView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp">
+
+                <!-- Helper to rotate text view properly -->
+                <FrameLayout
+                    android:id="@+id/tabDestacados"
+                    android:layout_width="60dp"
+                    android:layout_height="120dp">
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:rotation="-90"
+                        android:text="@string/tab_destacados"
+                        android:textColor="@color/tab_destacados"
+                        android:textSize="14sp" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/tabRecomendados"
+                    android:layout_width="60dp"
+                    android:layout_height="140dp">
+                    <TextView
+                        android:layout_width="140dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:rotation="-90"
+                        android:text="@string/tab_recomendados"
+                        android:textColor="@color/tab_recomendados"
+                        android:textSize="14sp" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/tabRecientes"
+                    android:layout_width="60dp"
+                    android:layout_height="100dp">
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:rotation="-90"
+                        android:text="@string/tab_recientes"
+                        android:textColor="@color/tab_recientes"
+                        android:textSize="14sp" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/tabHabilidades"
+                    android:layout_width="60dp"
+                    android:layout_height="140dp">
+                    <TextView
+                        android:layout_width="140dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:rotation="-90"
+                        android:text="@string/tab_habilidades"
+                        android:textColor="@color/tab_habilidades"
+                        android:textSize="14sp" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/tabAyuda"
+                    android:layout_width="60dp"
+                    android:layout_height="80dp">
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:rotation="-90"
+                        android:text="@string/tab_ayuda"
+                        android:textColor="@color/tab_ayuda"
+                        android:textSize="14sp" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/tabCerrarSesion"
+                    android:layout_width="60dp"
+                    android:layout_height="120dp">
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:rotation="-90"
+                        android:text="@string/tab_cerrar_sesion"
+                        android:textColor="@color/tab_cerrar_sesion"
+                        android:textSize="14sp" />
+                </FrameLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- RecyclerView for Jobs -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvJobs"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp" />
+
+    </LinearLayout>
+
+    <!-- Bottom Navigation -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/card_border" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/black"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:weightSum="5">
+
+        <!-- Rec & Post -->
+        <LinearLayout
+            android:id="@+id/navRecPost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_briefcase"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nav_rec_post"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Mensajes -->
+        <LinearLayout
+            android:id="@+id/navMensajes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_chat"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nav_mensajes"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Inicio (Active) -->
+        <LinearLayout
+            android:id="@+id/navInicio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_home_filled"
+                android:layout_marginBottom="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nav_inicio"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Guardados -->
+        <LinearLayout
+            android:id="@+id/navGuardados"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_bookmark"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nav_guardados"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Perfil -->
+        <LinearLayout
+            android:id="@+id/navPerfil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_profile_outline"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nav_perfil"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

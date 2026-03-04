@@ -22,10 +22,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FormActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name=".CreateAccountActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
@@ -33,7 +29,25 @@
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".OnboardingActivity"
+            android:name=".PaymentMethodsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FeedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecPostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PostuladosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PostulanteDetalleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PostulandoDetalleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarPropuestaActivity"
             android:exported="false" />
     </application>
 
