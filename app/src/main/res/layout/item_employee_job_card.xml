@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_recent_card"
+    android:layout_marginBottom="10dp"
+    android:padding="16dp">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvJobTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Limpieza de local 54 m²"
+        android:textColor="#111111"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivBookmark"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Bookmark icon -->
+    <ImageView
+        android:id="@+id/ivBookmark"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/ic_bookmark_outline"
+        app:tint="#999999"
+        android:contentDescription="Guardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Location -->
+    <TextView
+        android:id="@+id/tvJobLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Lima, Independencia"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvJobTitle" />
+
+    <!-- Price -->
+    <TextView
+        android:id="@+id/tvJobPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="S/negociable"
+        android:textColor="@color/price_green"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvJobLocation" />
+
+    <!-- Rating -->
+    <TextView
+        android:id="@+id/tvJobRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4.5"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/ivJobStar"
+        app:layout_constraintTop_toTopOf="@id/tvJobPrice"
+        app:layout_constraintBottom_toBottomOf="@id/tvJobPrice"
+        android:layout_marginEnd="4dp" />
+
+    <!-- Star icon -->
+    <ImageView
+        android:id="@+id/ivJobStar"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/ic_star_filled"
+        android:contentDescription="Rating"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvJobRating"
+        app:layout_constraintBottom_toBottomOf="@id/tvJobRating" />
+
+    <!-- Date -->
+    <TextView
+        android:id="@+id/tvJobDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10/10/25"
+        android:textColor="#999999"
+        android:textSize="13sp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivJobStar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

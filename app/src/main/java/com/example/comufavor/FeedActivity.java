@@ -35,9 +35,7 @@ public class FeedActivity extends AppCompatActivity {
         });
 
         setupRecyclerView();
-        setupLateralTabs();
         setupBottomNav();
-        setupTopBar();
     }
 
     private void setupRecyclerView() {
@@ -45,8 +43,8 @@ public class FeedActivity extends AppCompatActivity {
         rvJobs.setLayoutManager(new LinearLayoutManager(this));
 
         List<Job> mockJobs = new ArrayList<>();
-        // Mock data to match the design (e.g. 6 items)
-        for (int i = 0; i < 6; i++) {
+        // Mock data matching the design
+        for (int i = 0; i < 3; i++) {
             mockJobs.add(new Job(
                     "Limpieza de local 54 m²",
                     "Lima, Independencia",
@@ -54,43 +52,59 @@ public class FeedActivity extends AppCompatActivity {
                     "10/10/25"));
         }
 
-        JobAdapter adapter = new JobAdapter(mockJobs);
+        EmployeeJobAdapter adapter = new EmployeeJobAdapter(mockJobs);
         rvJobs.setAdapter(adapter);
     }
 
-    private void setupLateralTabs() {
-        findViewById(R.id.tabDestacados).setOnClickListener(v -> showSnackbar("Tab: destacados"));
-        findViewById(R.id.tabRecomendados).setOnClickListener(v -> showSnackbar("Tab: Recomendados"));
-        findViewById(R.id.tabRecientes).setOnClickListener(v -> showSnackbar("Tab: Recientes"));
-        findViewById(R.id.tabHabilidades).setOnClickListener(v -> showSnackbar("Tab: Mis habilidades"));
-        findViewById(R.id.tabAyuda).setOnClickListener(v -> showSnackbar("Tab: ayuda?"));
-        findViewById(R.id.tabCerrarSesion).setOnClickListener(v -> {
-            showSnackbar("Cerrar sesión");
-            // Optionally, handle logout here in the future
-        });
-    }
-
     private void setupBottomNav() {
-        findViewById(R.id.navRecPost).setOnClickListener(v -> {
+        findViewById(R.id.navPostulado).setOnClickListener(v -> {
             startActivity(new android.content.Intent(FeedActivity.this, RecPostActivity.class));
             overridePendingTransition(0, 0);
         });
-        findViewById(R.id.navMensajes).setOnClickListener(v -> showSnackbar("Nav: Mensajes"));
+        findViewById(R.id.navRecomen).setOnClickListener(v -> showSnackbar("Nav: Recomendaciones"));
         findViewById(R.id.navInicio).setOnClickListener(v -> showSnackbar("Ya estás en Inicio"));
         findViewById(R.id.navGuardados).setOnClickListener(v -> showSnackbar("Nav: Guardados"));
-
-        findViewById(R.id.navPerfil).setOnClickListener(v -> showSnackbar("Nav: Perfil"));
+        findViewById(R.id.navCuenta).setOnClickListener(v -> {
+            showLogoutConfirmationDialog();
+        });
     }
 
-    private void setupTopBar() {
-        // Just mock actions for menu and search if needed, Though not explicitly
-        // requested as IDs, we can skip or add later
+    private void showLogoutConfirmationDialog() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_logout_confirm, null);
+        builder.setView(dialogView);
+
+        android.app.AlertDialog dialog = builder.create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(
+                    new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
+            android.view.WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+            params.width = android.view.WindowManager.LayoutParams.MATCH_PARENT;
+            dialog.getWindow().setAttributes(params);
+        }
+
+        dialogView.findViewById(R.id.btnFinalizar).setOnClickListener(v -> {
+            UserPreferences userPrefs = new UserPreferences(this);
+            userPrefs.logout();
+            userPrefs.clearRemembered();
+
+            android.content.Intent intent = new android.content.Intent(FeedActivity.this, MainActivity.class);
+            intent.setFlags(
+                    android.content.Intent.FLAG_ACTIVITY_NEW_TASK | android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.btnCancelar).setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
     }
 
     private void showSnackbar(String message) {
         Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
         snackbar.setBackgroundTint(getResources().getColor(R.color.dark_background, getTheme()));
-        snackbar.setTextColor(getResources().getColor(R.color.green_accent, getTheme()));
+        snackbar.setTextColor(getResources().getColor(R.color.purple_login, getTheme()));
         snackbar.show();
     }
 }

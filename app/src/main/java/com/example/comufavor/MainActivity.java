@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void updateDrawState(@NonNull TextPaint ds) {
                 super.updateDrawState(ds);
-                ds.setColor(getResources().getColor(R.color.green_accent, getTheme()));
+                ds.setColor(getResources().getColor(R.color.purple_login, getTheme()));
                 ds.setUnderlineText(false);
             }
         };
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
     private void showSnackbar(String message) {
         Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
         snackbar.setBackgroundTint(getResources().getColor(R.color.dark_background, getTheme()));
-        snackbar.setTextColor(getResources().getColor(R.color.green_accent, getTheme()));
+        snackbar.setTextColor(getResources().getColor(R.color.purple_login, getTheme()));
         snackbar.show();
     }
 }

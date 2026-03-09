@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/postuladosMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/black"
     tools:context=".PostuladosActivity">
 
     <!-- Top spacing -->
     <Space
+        android:id="@+id/topSpace"
         android:layout_width="match_parent"
-        android:layout_height="48dp" />
+        android:layout_height="48dp"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/mainScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        app:layout_constraintTop_toBottomOf="@id/topSpace"
+        app:layout_constraintBottom_toTopOf="@id/llAsignadoView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:fillViewport="true"
         android:scrollbars="none">
 
@@ -105,6 +110,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/bg_asignado_container"
         android:paddingTop="24dp"
         android:paddingBottom="24dp"
@@ -253,18 +261,22 @@
 
     <!-- Bottom Navigation -->
     <View
+        android:id="@+id/bottomNavDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/card_border" />
+        android:background="@color/card_border"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavMain" />
 
     <LinearLayout
+        android:id="@+id/bottomNavMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/black"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:weightSum="5">
+        android:weightSum="5"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <!-- Rec & Post (Active in this view) -->
         <LinearLayout
@@ -396,4 +408,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

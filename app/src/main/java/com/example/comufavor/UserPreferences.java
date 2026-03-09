@@ -37,12 +37,42 @@ public class UserPreferences {
             user.put("email", email.toLowerCase().trim());
             user.put("password", password);
             user.put("dni", dni);
+            user.put("role", ""); // Default role is empty until selected
 
             usersPrefs.edit()
                     .putString(email.toLowerCase().trim(), user.toString())
                     .apply();
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void updateUserRole(String email, String role) {
+        String key = email.toLowerCase().trim();
+        String json = usersPrefs.getString(key, null);
+        if (json != null) {
+            try {
+                JSONObject user = new JSONObject(json);
+                user.put("role", role);
+                usersPrefs.edit()
+                        .putString(key, user.toString())
+                        .apply();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public String getUserRole(String email) {
+        String key = email.toLowerCase().trim();
+        String json = usersPrefs.getString(key, null);
+        if (json == null)
+            return "";
+        try {
+            JSONObject user = new JSONObject(json);
+            return user.optString("role", "");
+        } catch (JSONException e) {
+            return "";
         }
     }
 

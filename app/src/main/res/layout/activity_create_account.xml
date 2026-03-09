@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/createAccountMain"
     android:layout_width="match_parent"
@@ -8,59 +9,66 @@
 
     <!-- Background image (same as login) -->
     <ImageView
+        android:id="@+id/bgImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/bg_login"
-        android:contentDescription="@string/app_name" />
+        android:contentDescription="@string/app_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Dark overlay -->
-    <View
+    <!-- Gradient overlay -->
+    <ImageView
+        android:id="@+id/gradientOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/dark_overlay" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_login_gradient_img"
+        android:contentDescription="Gradient"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- App logo at top left (matches login screen) -->
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/krowdar_logo"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Scrollable content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/transparent"
+        android:background="@android:color/transparent"
         android:fillViewport="true"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="32dp"
-            android:paddingEnd="32dp"
-            android:paddingTop="48dp"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:paddingTop="32dp"
             android:paddingBottom="32dp">
-
-            <!-- App logo + title row -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/krowdar_logo"
-                    android:contentDescription="@string/app_name"
-                    android:layout_marginEnd="8dp" />
-
-                <TextView
-                    android:id="@+id/tvCreateAppTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/form_app_title"
-                    android:textColor="@color/green_accent"
-                    android:textSize="30sp"
-                    android:textStyle="bold|italic"
-                    android:fontFamily="sans-serif" />
-
-            </LinearLayout>
 
             <!-- Spacer -->
             <View
@@ -68,162 +76,154 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-            <!-- Crear cuenta title -->
+            <!-- Regístrate title -->
             <TextView
                 android:id="@+id/tvCreateTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/crear_cuenta_title"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold|italic"
+                android:layout_marginBottom="40dp"
                 android:fontFamily="sans-serif"
-                android:layout_marginBottom="24dp" />
+                android:lineSpacingExtra="2dp"
+                android:text="@string/crear_cuenta_title"
+                android:textColor="@color/purple_login"
+                android:textSize="26sp"
+                android:textStyle="normal" />
 
-            <!-- DNI label -->
+            <!-- Phone label -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_dni"
-                android:textColor="@color/green_accent"
-                android:textSize="13sp" />
+                android:text="@string/label_celular"
+                android:textColor="@color/purple_login"
+                android:textSize="14sp" />
 
-            <!-- DNI input -->
+            <!-- Phone input -->
             <EditText
-                android:id="@+id/etDni"
+                android:id="@+id/etPhone"
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:hint="@string/hint_dni"
-                android:textColorHint="@color/input_hint"
-                android:textColor="@color/green_accent"
-                android:textSize="16sp"
-                android:inputType="number"
+                android:layout_height="48dp"
+                android:autofillHints="phone"
                 android:background="@android:color/transparent"
+                android:hint="@string/hint_celular"
+                android:inputType="phone"
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
-                android:layout_marginTop="2dp" />
+                android:textColor="@color/purple_login"
+                android:textColorHint="@color/purple_login_hint"
+                android:textSize="20sp" />
 
-            <!-- DNI underline -->
+            <!-- Phone underline -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/green_accent" />
+                android:background="@color/purple_login" />
 
             <!-- Email label -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:text="@string/label_email"
-                android:textColor="@color/green_accent"
-                android:textSize="13sp"
-                android:layout_marginTop="16dp" />
+                android:textColor="@color/purple_login"
+                android:textSize="14sp" />
 
             <!-- Email input -->
             <EditText
                 android:id="@+id/etCreateEmail"
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:hint="@string/hint_email"
-                android:textColorHint="@color/input_hint"
-                android:textColor="@color/green_accent"
-                android:textSize="16sp"
-                android:inputType="textEmailAddress"
+                android:layout_height="48dp"
+                android:autofillHints="emailAddress"
                 android:background="@android:color/transparent"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
-                android:autofillHints="emailAddress"
-                android:layout_marginTop="2dp" />
+                android:textColor="@color/purple_login"
+                android:textColorHint="@color/purple_login_hint"
+                android:textSize="20sp" />
 
             <!-- Email underline -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/green_accent" />
+                android:background="@color/purple_login" />
 
             <!-- Password label -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:text="@string/label_password"
-                android:textColor="@color/green_accent"
-                android:textSize="13sp"
-                android:layout_marginTop="16dp" />
+                android:textColor="@color/purple_login"
+                android:textSize="14sp" />
 
             <!-- Password input -->
             <EditText
                 android:id="@+id/etCreatePassword"
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:hint="@string/hint_password"
-                android:textColorHint="@color/input_hint"
-                android:textColor="@color/green_accent"
-                android:textSize="16sp"
-                android:inputType="textPassword"
+                android:layout_height="48dp"
+                android:autofillHints="password"
                 android:background="@android:color/transparent"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
-                android:autofillHints="password"
-                android:layout_marginTop="2dp" />
+                android:textColor="@color/purple_login"
+                android:textColorHint="@color/purple_login_hint"
+                android:textSize="20sp" />
 
             <!-- Password underline -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/green_accent" />
+                android:background="@color/purple_login" />
 
-            <!-- Terms checkbox -->
+            <!-- Remember checkbox (replaces terms) -->
             <CheckBox
-                android:id="@+id/cbTerms"
+                android:id="@+id/cbRemember"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:buttonTint="@color/purple_login"
                 android:text="@string/accept_terms"
-                android:textColor="@color/input_hint"
-                android:textSize="11sp"
-                android:buttonTint="@color/green_accent"
-                android:layout_marginTop="10dp" />
+                android:textColor="@color/purple_login_hint"
+                android:textSize="12sp" />
 
-            <!-- Acceder button -->
-            <Button
-                android:id="@+id/btnCreateAcceder"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/btn_login"
-                android:textColor="@color/green_accent"
-                android:textSize="18sp"
-                android:textAllCaps="false"
-                android:background="@drawable/btn_login_border"
-                android:stateListAnimator="@null"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp" />
-
-            <!-- Already have account -->
-            <TextView
-                android:id="@+id/tvCreateAlreadyAccount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:layout_marginTop="14dp" />
-
-            <!-- Spacer before terms -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-            <!-- Privacy / terms text -->
+            <!-- Acceder button -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCreateAcceder"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/btn_login_new_border"
+                app:backgroundTint="@null"
+                android:backgroundTint="@null"
+                android:stateListAnimator="@null"
+                android:text="@string/create_account"
+                android:textAllCaps="false"
+                android:textColor="@color/purple_login"
+                android:textSize="22sp" />
+
+            <!-- "o Crear Cuenta" link back to Login -->
             <TextView
+                android:id="@+id/tvCreateAlreadyAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/terms_privacy"
-                android:textColor="@color/input_hint"
-                android:textSize="10sp"
-                android:lineSpacingExtra="2dp"
-                android:layout_marginTop="24dp" />
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="o iniciar sesión"
+                android:textColor="@color/purple_login"
+                android:textSize="14sp" />
 
         </LinearLayout>
     </ScrollView>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

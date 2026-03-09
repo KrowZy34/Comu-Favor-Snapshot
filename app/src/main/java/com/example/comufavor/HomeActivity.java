@@ -50,7 +50,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setupSiguienteButton() {
         findViewById(R.id.btnSiguiente).setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, PaymentMethodsActivity.class);
+            Intent intent = new Intent(HomeActivity.this, FeedActivity.class);
             startActivity(intent);
         });
     }

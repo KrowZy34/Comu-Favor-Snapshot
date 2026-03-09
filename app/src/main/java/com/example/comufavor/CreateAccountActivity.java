@@ -8,10 +8,10 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -25,8 +25,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
-    private EditText etDni, etEmail, etPassword;
-    private CheckBox cbTerms;
+    private EditText etPhone, etEmail, etPassword;
+    private CheckBox cbRemember;
     private UserPreferences userPrefs;
     private View rootView;
 
@@ -49,10 +49,10 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         userPrefs = new UserPreferences(this);
 
-        etDni = findViewById(R.id.etDni);
+        etPhone = findViewById(R.id.etPhone);
         etEmail = findViewById(R.id.etCreateEmail);
         etPassword = findViewById(R.id.etCreatePassword);
-        cbTerms = findViewById(R.id.cbTerms);
+        cbRemember = findViewById(R.id.cbRemember);
 
         setupAccederButton();
         setupAlreadyHaveAccountText();
@@ -60,24 +60,24 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private void setupAccederButton() {
         findViewById(R.id.btnCreateAcceder).setOnClickListener(v -> {
-            String dni = etDni.getText().toString().trim();
+            String phone = etPhone.getText().toString().trim();
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString();
 
-            if (dni.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            if (phone.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 showSnackbar(getString(R.string.error_empty_fields));
                 return;
             }
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 showSnackbar(getString(R.string.error_invalid_email));
+                return;
+            }
+            if (!cbRemember.isChecked()) {
+                showSnackbar(getString(R.string.error_accept_terms));
                 return;
             }
             if (password.length() < 6) {
                 showSnackbar(getString(R.string.error_password_short));
-                return;
-            }
-            if (!cbTerms.isChecked()) {
-                showSnackbar(getString(R.string.error_accept_terms));
                 return;
             }
             if (userPrefs.userExists(email)) {
@@ -85,14 +85,18 @@ public class CreateAccountActivity extends AppCompatActivity {
                 return;
             }
 
-            userPrefs.saveUser(email, password, dni);
+            // Using phone instead of DNI for the registration parameters.
+            userPrefs.saveUser(email, password, phone);
+
+            // Note: cbRemember logic would go here if UserPreferences supports it,
+            // e.g. userPrefs.setRememberMe(cbRemember.isChecked());
             userPrefs.setLoggedIn(email);
 
             showSnackbar(getString(R.string.success_account_created));
 
-            // Navigate to Onboarding
+            // Navigate to Role Selection
             rootView.postDelayed(() -> {
-                Intent intent = new Intent(CreateAccountActivity.this, HomeActivity.class);
+                Intent intent = new Intent(CreateAccountActivity.this, RoleSelectionActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
@@ -103,12 +107,10 @@ public class CreateAccountActivity extends AppCompatActivity {
     private void setupAlreadyHaveAccountText() {
         TextView tvAlready = findViewById(R.id.tvCreateAlreadyAccount);
 
-        String prefix = getString(R.string.already_have_account) + " ";
-        String link = getString(R.string.acceder_link);
-        String fullText = prefix + link;
-
+        String fullText = "o iniciar sesión";
         SpannableString spannable = new SpannableString(fullText);
-        int start = prefix.length();
+
+        int start = 2; // "o " is length 2
         int end = fullText.length();
 
         ClickableSpan clickableSpan = new ClickableSpan() {
@@ -123,7 +125,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             @Override
             public void updateDrawState(@NonNull TextPaint ds) {
                 super.updateDrawState(ds);
-                ds.setColor(getResources().getColor(R.color.green_accent, getTheme()));
+                ds.setColor(getResources().getColor(R.color.purple_login, getTheme()));
                 ds.setUnderlineText(false);
             }
         };
@@ -137,7 +139,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private void showSnackbar(String message) {
         Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
         snackbar.setBackgroundTint(getResources().getColor(R.color.dark_background, getTheme()));
-        snackbar.setTextColor(getResources().getColor(R.color.green_accent, getTheme()));
+        snackbar.setTextColor(getResources().getColor(R.color.purple_login, getTheme()));
         snackbar.show();
     }
 }

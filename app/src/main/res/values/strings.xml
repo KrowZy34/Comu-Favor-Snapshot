@@ -15,11 +15,10 @@
 
     <!-- Registration screen -->
     <string name="form_app_title">Krowdar</string>
-    <string name="crear_cuenta_title">Crear cuenta</string>
-    <string name="label_dni">Documento DNI</string>
-    <string name="hint_dni">Documento DNI</string>
+    <string name="crear_cuenta_title">Regístrate</string>
+    <string name="label_celular">Numero celular</string>
+    <string name="hint_celular">Numero</string>
     <string name="accept_terms">Acepto los Términos y Condiciones.</string>
-    <string name="already_have_account">¿Ya tengo una cuenta?</string>
     <string name="acceder_link">Acceder</string>
     <string name="terms_privacy">Tus datos son necesarios para verificar tu identidad y confirmar que cumples con la edad requerida para usar la aplicación. La información será tratada con confidencialidad y protegida con medidas de seguridad adecuadas.</string>
     <string name="app_description">Aplicación móvil dirigida a adultos que buscan generar ingresos ofreciendo servicios informales, facilitando el contacto con clientes, promoviendo el autoempleo, la inclusión económica y el desarrollo dentro de sus comunidades.</string>
@@ -71,6 +70,11 @@
     <string name="nav_inicio">Inicio</string>
     <string name="nav_guardados">Guardados</string>
     <string name="nav_perfil">Perfil</string>
+
+    <!-- Dialog Logout -->
+    <string name="logout_confirm_title">Estas seguro de cerrar sesión ?</string>
+    <string name="logout_confirm_finalizar">finalizar</string>
+    <string name="logout_confirm_cancelar">Cancelar</string>
 
     <!-- Rec & Post -->
     <string name="rec_post_reclutando">Reclutando</string>

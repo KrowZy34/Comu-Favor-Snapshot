@@ -7,6 +7,13 @@
     <color name="input_hint">#80FFFFFF</color>
     <color name="dark_background">#FF1A1A1A</color>
     <color name="transparent">#00000000</color>
+    <color name="purple_login">#9D00FF</color>
+    <color name="purple_login_hint">#809D00FF</color>
+    <color name="light_yellow_login">#F5F5DC</color>
+    
+    <!-- Gradient Background Colors -->
+    <color name="gradient_start">#E6EB9F</color>
+    <color name="gradient_end">#FFFFFF</color>
     
     <!-- Homepage colors -->
     <color name="tab_destacados">#FFC107</color>
@@ -17,6 +24,7 @@
     <color name="tab_cerrar_sesion">#EF5350</color>
     <color name="price_text">#EF5350</color>
     <color name="card_border">#333333</color>
+    <color name="job_card_border">#FFC107</color>
 
     <!-- Rec & Post colors -->
     <color name="rec_cyan">#26C6DA</color>
