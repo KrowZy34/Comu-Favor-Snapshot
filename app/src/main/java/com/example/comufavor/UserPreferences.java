@@ -38,6 +38,10 @@ public class UserPreferences {
             user.put("password", password);
             user.put("dni", dni);
             user.put("role", ""); // Default role is empty until selected
+            user.put("first_name", "");
+            user.put("last_name", "");
+            user.put("phone", "");
+            user.put("address", "");
 
             usersPrefs.edit()
                     .putString(email.toLowerCase().trim(), user.toString())
@@ -100,7 +104,14 @@ public class UserPreferences {
 
         try {
             JSONObject user = new JSONObject(json);
-            // Use the part before @ as display name
+            // Fetch first and last names if available
+            String firstName = user.optString("first_name", "").trim();
+            String lastName = user.optString("last_name", "").trim();
+            if (!firstName.isEmpty() || !lastName.isEmpty()) {
+                return (firstName + " " + lastName).trim();
+            }
+
+            // Fallback: Use the part before @ as display name
             String storedEmail = user.getString("email");
             int atIndex = storedEmail.indexOf("@");
             if (atIndex > 0) {
@@ -110,6 +121,92 @@ public class UserPreferences {
         } catch (JSONException e) {
             return "";
         }
+    }
+
+    // ─── Profile Fields ───
+
+    public void updateProfileFields(String email, String firstName, String lastName, String phone, String address) {
+        String key = email.toLowerCase().trim();
+        String json = usersPrefs.getString(key, null);
+        if (json != null) {
+            try {
+                JSONObject user = new JSONObject(json);
+                user.put("first_name", firstName);
+                user.put("last_name", lastName);
+                user.put("phone", phone);
+                user.put("address", address);
+                usersPrefs.edit().putString(key, user.toString()).apply();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public String getUserFirstName(String email) {
+        String key = email.toLowerCase().trim();
+        String json = usersPrefs.getString(key, null);
+        if (json == null) return "";
+        try { return new JSONObject(json).optString("first_name", ""); } catch (JSONException e) { return ""; }
+    }
+
+    public String getUserLastName(String email) {
+        String key = email.toLowerCase().trim();
+        String json = usersPrefs.getString(key, null);
+        if (json == null) return "";
+        try { return new JSONObject(json).optString("last_name", ""); } catch (JSONException e) { return ""; }
+    }
+
+    public String getUserPhone(String email) {
+        String key = email.toLowerCase().trim();
+        String json = usersPrefs.getString(key, null);
+        if (json == null) return "";
+        try { return new JSONObject(json).optString("phone", ""); } catch (JSONException e) { return ""; }
+    }
+
+    public String getUserAddress(String email) {
+        String key = email.toLowerCase().trim();
+        String json = usersPrefs.getString(key, null);
+        if (json == null) return "";
+        try { return new JSONObject(json).optString("address", ""); } catch (JSONException e) { return ""; }
+    }
+
+    /**
+     * Updates the user's email. This requires migrating their entire JSON record to a new key
+     * and updating the active session if they are currently logged in.
+     */
+    public boolean updateUserEmail(String oldEmail, String newEmail) {
+        String oldKey = oldEmail.toLowerCase().trim();
+        String newKey = newEmail.toLowerCase().trim();
+
+        if (oldKey.equals(newKey)) return true; // No change
+        if (usersPrefs.contains(newKey)) return false; // Email already in use
+
+        String json = usersPrefs.getString(oldKey, null);
+        if (json != null) {
+            try {
+                JSONObject user = new JSONObject(json);
+                user.put("email", newKey);
+
+                SharedPreferences.Editor editor = usersPrefs.edit();
+                editor.putString(newKey, user.toString());
+                editor.remove(oldKey);
+                editor.apply();
+
+                // If this is the currently logged in user, update the session
+                if (oldKey.equals(getLoggedInEmail())) {
+                    setLoggedIn(newKey);
+                }
+                // Update remembered email if it matches
+                if (oldKey.equals(getRemembered())) {
+                    setRemembered(newKey);
+                }
+
+                return true;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 
     // ─── Remember me ───
@@ -128,6 +225,114 @@ public class UserPreferences {
         sessionPrefs.edit()
                 .remove(KEY_REMEMBERED_EMAIL)
                 .apply();
+    }
+
+    // ─── Description ───
+
+    public void updateUserDescription(String email, String description) {
+        String key = email.toLowerCase().trim();
+        String json = usersPrefs.getString(key, null);
+        if (json != null) {
+            try {
+                JSONObject user = new JSONObject(json);
+                user.put("description", description);
+                usersPrefs.edit()
+                        .putString(key, user.toString())
+                        .apply();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public String getUserDescription(String email) {
+        String key = email.toLowerCase().trim();
+        String json = usersPrefs.getString(key, null);
+        if (json == null)
+            return "";
+        try {
+            JSONObject user = new JSONObject(json);
+            return user.optString("description", "");
+        } catch (JSONException e) {
+            return "";
+        }
+    }
+
+    // ─── Skills ───
+
+    public void addSkill(String email, String skill) {
+        String key = email.toLowerCase().trim();
+        String json = usersPrefs.getString(key, null);
+        if (json != null) {
+            try {
+                JSONObject user = new JSONObject(json);
+                org.json.JSONArray skillsArray = user.optJSONArray("skills");
+                if (skillsArray == null) {
+                    skillsArray = new org.json.JSONArray();
+                }
+                
+                // Avoid duplicates
+                boolean exists = false;
+                for (int i = 0; i < skillsArray.length(); i++) {
+                    if (skillsArray.getString(i).equalsIgnoreCase(skill)) {
+                        exists = true;
+                        break;
+                    }
+                }
+                
+                if (!exists) {
+                    skillsArray.put(skill);
+                    user.put("skills", skillsArray);
+                    usersPrefs.edit().putString(key, user.toString()).apply();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void removeSkill(String email, String skill) {
+        String key = email.toLowerCase().trim();
+        String json = usersPrefs.getString(key, null);
+        if (json != null) {
+            try {
+                JSONObject user = new JSONObject(json);
+                org.json.JSONArray skillsArray = user.optJSONArray("skills");
+                if (skillsArray != null) {
+                    org.json.JSONArray newArray = new org.json.JSONArray();
+                    for (int i = 0; i < skillsArray.length(); i++) {
+                        String s = skillsArray.getString(i);
+                        if (!s.equalsIgnoreCase(skill)) {
+                            newArray.put(s);
+                        }
+                    }
+                    user.put("skills", newArray);
+                    usersPrefs.edit().putString(key, user.toString()).apply();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public java.util.Set<String> getSkills(String email) {
+        java.util.Set<String> skillsSet = new java.util.HashSet<>();
+        String key = email.toLowerCase().trim();
+        String json = usersPrefs.getString(key, null);
+        if (json != null) {
+            try {
+                JSONObject user = new JSONObject(json);
+                org.json.JSONArray skillsArray = user.optJSONArray("skills");
+                if (skillsArray != null) {
+                    for (int i = 0; i < skillsArray.length(); i++) {
+                        skillsSet.add(skillsArray.getString(i));
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return skillsSet;
     }
 
     // ─── Session ───

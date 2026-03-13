@@ -37,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setupWelcome() {
         TextView tvWelcome = findViewById(R.id.tvWelcome);
+        TextView tvUserRole = findViewById(R.id.tvUserRole);
         String email = userPrefs.getLoggedInEmail();
         if (email != null) {
             String name = userPrefs.getUserName(email);
@@ -45,12 +46,27 @@ public class HomeActivity extends AppCompatActivity {
             } else {
                 tvWelcome.setText(getString(R.string.welcome_message, email));
             }
+
+            String role = userPrefs.getUserRole(email);
+            if ("Reclutar".equals(role)) {
+                tvUserRole.setText("Tu rol es de empleador");
+            } else if ("Postular".equals(role)) {
+                tvUserRole.setText("Tu rol es de empleado");
+            }
         }
     }
 
     private void setupSiguienteButton() {
         findViewById(R.id.btnSiguiente).setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, FeedActivity.class);
+            String email = userPrefs.getLoggedInEmail();
+            String role = userPrefs.getUserRole(email);
+            
+            Intent intent;
+            if ("Reclutar".equals(role)) {
+                intent = new Intent(HomeActivity.this, RecruiterHomeActivity.class);
+            } else {
+                intent = new Intent(HomeActivity.this, FeedActivity.class);
+            }
             startActivity(intent);
         });
     }

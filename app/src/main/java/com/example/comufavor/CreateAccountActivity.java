@@ -3,6 +3,7 @@ package com.example.comufavor;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -11,7 +12,7 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -25,10 +26,11 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
-    private EditText etPhone, etEmail, etPassword;
+    private EditText etPhone, etEmail, etPassword, etFirstName, etLastName;
     private CheckBox cbRemember;
     private UserPreferences userPrefs;
     private View rootView;
+    private boolean isPasswordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,23 +55,32 @@ public class CreateAccountActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etCreateEmail);
         etPassword = findViewById(R.id.etCreatePassword);
         cbRemember = findViewById(R.id.cbRemember);
+        etFirstName = findViewById(R.id.etCreateFirstName);
+        etLastName = findViewById(R.id.etCreateLastName);
 
         setupAccederButton();
         setupAlreadyHaveAccountText();
+        setupPasswordToggle();
     }
 
     private void setupAccederButton() {
         findViewById(R.id.btnCreateAcceder).setOnClickListener(v -> {
+            String firstName = etFirstName.getText().toString().trim();
+            String lastName = etLastName.getText().toString().trim();
             String phone = etPhone.getText().toString().trim();
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString();
 
-            if (phone.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            if (firstName.isEmpty() || lastName.isEmpty() || phone.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 showSnackbar(getString(R.string.error_empty_fields));
                 return;
             }
             if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 showSnackbar(getString(R.string.error_invalid_email));
+                return;
+            }
+            if (phone.length() != 9) {
+                showSnackbar("El número de teléfono debe tener 9 dígitos");
                 return;
             }
             if (!cbRemember.isChecked()) {
@@ -87,6 +98,8 @@ public class CreateAccountActivity extends AppCompatActivity {
 
             // Using phone instead of DNI for the registration parameters.
             userPrefs.saveUser(email, password, phone);
+            // Save newly added names
+            userPrefs.updateProfileFields(email, firstName, lastName, phone, "");
 
             // Note: cbRemember logic would go here if UserPreferences supports it,
             // e.g. userPrefs.setRememberMe(cbRemember.isChecked());
@@ -94,13 +107,28 @@ public class CreateAccountActivity extends AppCompatActivity {
 
             showSnackbar(getString(R.string.success_account_created));
 
-            // Navigate to Role Selection
+            // Navigate to Verification Code
             rootView.postDelayed(() -> {
-                Intent intent = new Intent(CreateAccountActivity.this, RoleSelectionActivity.class);
+                Intent intent = new Intent(CreateAccountActivity.this, VerificationCodeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
             }, 800);
+        });
+    }
+
+    private void setupPasswordToggle() {
+        ImageView ivToggle = findViewById(R.id.ivTogglePassword);
+        ivToggle.setOnClickListener(v -> {
+            isPasswordVisible = !isPasswordVisible;
+            if (isPasswordVisible) {
+                etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                ivToggle.setImageResource(R.drawable.ic_mostrar);
+            } else {
+                etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                ivToggle.setImageResource(R.drawable.ic_ocultar);
+            }
+            etPassword.setSelection(etPassword.getText().length());
         });
     }
 

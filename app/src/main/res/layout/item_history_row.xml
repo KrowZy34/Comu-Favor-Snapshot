@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llMainRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/ivHistoryCheckbox"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_checkbox_unchecked"
+            android:layout_marginEnd="16dp"
+            android:visibility="gone"
+            android:contentDescription="Checkbox" />
+
+        <TextView
+            android:id="@+id/tvHistoryTime"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="2:57"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvHistoryTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Limpieza de local..."
+            android:textColor="#333333"
+            android:textSize="14sp"
+            android:ellipsize="end"
+            android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/tvHistoryPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/000.00"
+            android:textColor="#333333"
+            android:textSize="14sp"
+            android:layout_marginEnd="16dp" />
+
+        <ImageView
+            android:id="@+id/ivHistoryStatus"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_check_green"
+            android:contentDescription="Status" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llExpandedContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:paddingHorizontal="24dp"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Ubic"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvHistoryUbic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Av. Alfredo Mendiola 3520, Lima 15311"
+                android:textColor="#666666"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Rclt"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvHistoryRclt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Sandro Chavez"
+                android:textColor="#666666"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Calif"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:id="@+id/llStars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <!-- Stars will be populated programmatically or via specific IDs, leaving as simple images for now -->
+                <ImageView android:id="@+id/ivStar1" android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_star_filled_yellow" />
+                <ImageView android:id="@+id/ivStar2" android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_star_filled_yellow" />
+                <ImageView android:id="@+id/ivStar3" android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_star_filled_yellow" />
+                <ImageView android:id="@+id/ivStar4" android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_star_outline_black" />
+                <ImageView android:id="@+id/ivStar5" android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_star_outline_black" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999999" />
+    </LinearLayout>
+</LinearLayout>

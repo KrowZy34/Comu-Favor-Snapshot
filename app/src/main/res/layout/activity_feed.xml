@@ -15,7 +15,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bg_search_bar_purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -175,96 +175,14 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Recruited Job Card -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/recruitedCard"
+            <!-- Recruited Jobs List -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRecruitedJobs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_recruited_card"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
-
-                <TextView
-                    android:id="@+id/tvRecruitedTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Limpieza de local 54 m²"
-                    android:textColor="#111111"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ivRecruitedBookmark"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/ivRecruitedBookmark"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_bookmark_outline"
-                    app:tint="#999999"
-                    android:contentDescription="Guardar"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvRecruitedLocation"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Lima, Independencia"
-                    android:textColor="#666666"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvRecruitedTitle" />
-
-                <TextView
-                    android:id="@+id/tvRecruitedPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="S/negociable"
-                    android:textColor="@color/price_green"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvRecruitedLocation" />
-
-                <TextView
-                    android:id="@+id/tvRecruitedDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="10/10/25"
-                    android:textColor="#666666"
-                    android:textSize="13sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvRecruitedPrice" />
-
-                <!-- Reclutado status -->
-                <TextView
-                    android:id="@+id/tvRecruitedStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Reclutado"
-                    android:textColor="#555555"
-                    android:textSize="14sp"
-                    android:layout_marginTop="12dp"
-                    app:layout_constraintEnd_toStartOf="@id/ivRecruitedCheck"
-                    app:layout_constraintTop_toBottomOf="@id/tvRecruitedDate"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginEnd="6dp" />
-
-                <ImageView
-                    android:id="@+id/ivRecruitedCheck"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/ic_check_circle"
-                    android:contentDescription="Reclutado"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvRecruitedStatus"
-                    app:layout_constraintBottom_toBottomOf="@id/tvRecruitedStatus" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"
+                android:layout_marginBottom="16dp" />
 
             <!-- Section: Recientes -->
             <TextView
@@ -425,8 +343,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_profile_outline"
-                app:tint="#999999"
+                android:src="@drawable/ic_nav_account"
                 android:contentDescription="Cuenta" />
 
             <TextView

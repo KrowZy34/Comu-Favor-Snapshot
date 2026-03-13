@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog_red_border"
+    android:orientation="vertical"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reportar"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:layout_marginBottom="16dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:scrollbars="vertical"
+        android:fillViewport="true">
+
+        <RadioGroup
+            android:id="@+id/rgReportReasons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cancelación inesperada"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                android:paddingVertical="12dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Información incorrecta"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                android:paddingVertical="12dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cambió condiciones"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                android:paddingVertical="12dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Falta de comunicación"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                android:paddingVertical="12dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ubicación incorrecta"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                android:paddingVertical="12dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Problemas de pago"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                android:paddingVertical="12dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Trabajo diferente"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                android:paddingVertical="12dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Problemas de seguridad"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                android:paddingVertical="12dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Retraso excesivo"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                android:paddingVertical="12dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mal comportamiento"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                android:paddingVertical="12dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Otro"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:button="@null"
+                android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+                android:paddingVertical="12dp" />
+
+        </RadioGroup>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/btnEnviarReporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        android:textColor="#D32F2F"
+        android:textSize="16sp"
+        android:gravity="end"
+        android:paddingTop="16dp" />
+
+</LinearLayout>

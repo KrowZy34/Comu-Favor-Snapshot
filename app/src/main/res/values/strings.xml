@@ -71,6 +71,9 @@
     <string name="nav_guardados">Guardados</string>
     <string name="nav_perfil">Perfil</string>
 
+    <!-- Recommendations -->
+    <string name="recommendations_title">Recomendados</string>
+
     <!-- Dialog Logout -->
     <string name="logout_confirm_title">Estas seguro de cerrar sesión ?</string>
     <string name="logout_confirm_finalizar">finalizar</string>
@@ -91,7 +94,7 @@
     <string name="postulados_header_calificacion">Calificación</string>
 
     <!-- Detalle Postulante -->
-    <string name="detalle_mi_descripcion">Mi descripción:</string>
+    <string name="detalle_mi_descripcion">M#$i descripción:</string>
     <string name="detalle_mas">mas</string>
     <string name="detalle_aceptar">Reclutar</string>
     <string name="detalle_rechazar">Rechazar</string>
@@ -120,4 +123,58 @@
     <string name="add_job_label_info">Información:</string>
     <string name="add_job_hint_info">Explica el trabajo lo mejor posible</string>
     <string name="add_job_button">Publicar Propuesta</string>
+
+    <!-- Verification Code -->
+    <string name="verification_title">Código enviado</string>
+    <string name="verification_resend">Reenviar código</string>
+    <string name="verification_countdown">para enviar un código de verificación\nnuevo tendrá q esperar 55 segundos</string>
+    <string name="verification_countdown_format">para enviar un código de verificación\nnuevo tendrá q esperar %1$d segundos</string>
+    <string name="verification_countdown_ready">Ya puedes reenviar el código</string>
+    <string name="verification_btn">Verificar</string>
+    <string name="verification_more_info">Mas informacion</string>
+    <string name="verification_error_incomplete">Ingresa los 6 dígitos del código</string>
+    <string name="verification_success">¡Código verificado!</string>
+    <string name="verification_resent">Código reenviado</string>
+
+    <!-- Verification Info -->
+    <string name="verification_info_title">Información</string>
+    <string name="verification_info_subtitle">por que pedimos un código de verificación?</string>
+    <string name="verification_info_reason_1_title">1. Verificación del número telefónico</string>
+    <string name="verification_info_reason_1_desc">Permite confirmar que el usuario tiene acceso real al número de teléfono registrado.</string>
+    <string name="verification_info_reason_2_title">2. Prevención de cuentas falsas</string>
+    <string name="verification_info_reason_2_desc">Ayuda a reducir la creación de cuentas falsas o automatizadas (bots).</string>
+    <string name="verification_info_reason_3_title">3. Recuperación de la cuenta</string>
+    <string name="verification_info_reason_3_desc">Facilita que el usuario pueda recuperar el acceso en caso de olvidar su contraseña.</string>
+    <string name="verification_info_reason_4_title">4. Mayor seguridad</string>
+    <string name="verification_info_reason_4_desc">Funciona como un método adicional de verificación para proteger la cuenta del usuario.</string>
+    <string name="verification_info_reason_5_title">5. Comunicación confiable</string>
+    <string name="verification_info_reason_5_desc">Garantiza que la aplicación tenga un número válido para enviar notificaciones o información importante.</string>
+
+    <!-- Job Detail -->
+    <string name="job_detail_description_title">Descripción</string>
+    <string name="job_detail_description_text">Se requiere servicio de limpieza para un cuarto de aproximadamente 54 metros cuadrados. El espacio contiene basura, cajas y algunos electrodomésticos, por lo que será necesario organizar, retirar residuos y realizar una limpieza general del área.\nEl lugar sigue siendo accesible, por lo que se puede trabajar sin mayores dificultades. Se busca dejar el espacio ordenado y limpio.</string>
+    <string name="job_detail_photos_title">Muestra fotográfica</string>
+    <string name="job_detail_photos_placeholder">Imagenes</string>
+    <string name="job_detail_set_price">Colocar precio</string>
+    <string name="job_detail_postular">Postular</string>
+
+    <!-- Postular Dialog -->
+    <string name="postular_dialog_title">Agrega precio a tu trabajo</string>
+    <string name="postular_dialog_price">S/00.00</string>
+    <string name="postular_dialog_cancelar">Cancelar</string>
+    <string name="postular_dialog_confirmar">Confirmar</string>
+    <string name="postular_dialog_footer">El reclutador podrá ver tu propuesta, espera una respuesta</string>
+
+    <!-- Habilidades -->
+    <string name="habilidades_title">Habilidades</string>
+    <string name="habilidades_subtitle_name">Sandro Rodrigo Chavez Barrios</string>
+    <string name="habilidades_mis_habilidades">Mis habilidades</string>
+    <string name="habilidades_mi_descripcion">Mi descripción</string>
+    <string name="habilidades_mas">mas</string>
+    <string name="habilidad_aceite">Cambio de aceite</string>
+    <string name="habilidad_lavado">Lavado de autos</string>
+    <string name="habilidad_estibador">Estibador</string>
+    <string name="habilidad_repartidor">Repartidor</string>
+    <string name="habilidad_volantero">Volantero</string>
+    <string name="mock_description">\"Soy Sando Chavez, estudiante de Ingeniería de Software con IA en SENATI. Actualmente trabajo desarrollando y diseñando soluciones web a medida para empresas, donde también tengo la responsabilidad de liderar el equipo de desarrollo y gestionar la comunicación con los clientes. Me caracteriza mi capacidad de adaptación; antes del software, trabajé en mantenimiento automotriz, lo que me dio una base sólida en lógica y trabajo bajo presión. Ahora busco una oportunidad donde pueda seguir sumando experiencia en proyectos tecnológicos más ambiciosos.\"</string>
 </resources>

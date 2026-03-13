@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/verificationInfoMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_welcome_gradient"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    tools:context=".VerificationInfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <!-- Title: Información -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/verification_info_title"
+            android:textColor="#111111"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Subtitle -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/verification_info_subtitle"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Reason 1 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/verification_info_reason_1_title"
+            android:textColor="#111111"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"
+            android:paddingStart="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/verification_info_reason_1_desc"
+            android:textColor="#444444"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"
+            android:paddingStart="28dp" />
+
+        <!-- Reason 2 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/verification_info_reason_2_title"
+            android:textColor="#111111"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"
+            android:paddingStart="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/verification_info_reason_2_desc"
+            android:textColor="#444444"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"
+            android:paddingStart="28dp" />
+
+        <!-- Reason 3 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/verification_info_reason_3_title"
+            android:textColor="#111111"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"
+            android:paddingStart="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/verification_info_reason_3_desc"
+            android:textColor="#444444"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"
+            android:paddingStart="28dp" />
+
+        <!-- Reason 4 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/verification_info_reason_4_title"
+            android:textColor="#111111"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"
+            android:paddingStart="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/verification_info_reason_4_desc"
+            android:textColor="#444444"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"
+            android:paddingStart="28dp" />
+
+        <!-- Reason 5 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/verification_info_reason_5_title"
+            android:textColor="#111111"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"
+            android:paddingStart="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/verification_info_reason_5_desc"
+            android:textColor="#444444"
+            android:textSize="14sp"
+            android:layout_marginBottom="32dp"
+            android:paddingStart="28dp" />
+
+    </LinearLayout>
+</ScrollView>

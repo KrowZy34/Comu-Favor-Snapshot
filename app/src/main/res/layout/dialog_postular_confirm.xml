@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dialog_postular"
+    android:padding="24dp">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/postular_dialog_title"
+        android:textColor="#111111"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Editable Price -->
+    <EditText
+        android:id="@+id/etPostularPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/postular_dialog_price"
+        android:textColor="#111111"
+        android:textColorHint="#AAAAAA"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:inputType="numberDecimal"
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Buttons Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <!-- Cancelar -->
+        <TextView
+            android:id="@+id/btnDialogCancelar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/postular_dialog_cancelar"
+            android:textColor="@color/price_red"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="8dp" />
+
+        <!-- Confirmar -->
+        <TextView
+            android:id="@+id/btnDialogConfirmar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/postular_dialog_confirmar"
+            android:textColor="@color/price_green"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="8dp" />
+
+    </LinearLayout>
+
+    <!-- Footer note -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/postular_dialog_footer"
+        android:textColor="#555555"
+        android:textSize="13sp"
+        android:gravity="center" />
+
+</LinearLayout>

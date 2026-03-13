@@ -2,6 +2,8 @@ package com.example.comufavor;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.text.InputType;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -9,14 +11,17 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox cbRemember;
     private UserPreferences userPrefs;
     private View rootView;
+    private boolean isPasswordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         // Auto-login if remembered
         String remembered = userPrefs.getRemembered();
         if (remembered != null && userPrefs.isLoggedIn()) {
-            navigateToHome();
+            navigateToHome(remembered);
             return;
         }
 
@@ -64,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
         setupLoginButton();
         setupCreateAccountText();
+        setupForgotPassword();
+        setupPasswordToggle();
     }
 
     private void setupLoginButton() {
@@ -89,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     userPrefs.clearRemembered();
                 }
-                navigateToHome();
+                navigateToHome(email);
             } else {
                 showSnackbar(getString(R.string.error_invalid_credentials));
             }
@@ -126,8 +134,66 @@ public class MainActivity extends AppCompatActivity {
         tvCreateAccount.setHighlightColor(Color.TRANSPARENT);
     }
 
-    private void navigateToHome() {
-        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+    private void setupPasswordToggle() {
+        ImageView ivToggle = findViewById(R.id.ivTogglePassword);
+        ivToggle.setOnClickListener(v -> {
+            isPasswordVisible = !isPasswordVisible;
+            if (isPasswordVisible) {
+                etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                ivToggle.setImageResource(R.drawable.ic_mostrar);
+            } else {
+                etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                ivToggle.setImageResource(R.drawable.ic_ocultar);
+            }
+            etPassword.setSelection(etPassword.getText().length());
+        });
+    }
+
+    private void setupForgotPassword() {
+        TextView tvForgotPassword = findViewById(R.id.tvForgotPassword);
+        tvForgotPassword.setOnClickListener(v -> showRecoveryDialog());
+    }
+
+    private void showRecoveryDialog() {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_recovery_method, null);
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .create();
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        dialogView.findViewById(R.id.optionEmail).setOnClickListener(v -> {
+            dialog.dismiss();
+            Intent intent = new Intent(MainActivity.this, VerificationCodeActivity.class);
+            intent.putExtra("recovery_mode", "email");
+            startActivity(intent);
+        });
+
+        dialogView.findViewById(R.id.optionSms).setOnClickListener(v -> {
+            dialog.dismiss();
+            Intent intent = new Intent(MainActivity.this, VerificationCodeActivity.class);
+            intent.putExtra("recovery_mode", "sms");
+            startActivity(intent);
+        });
+
+        dialog.show();
+    }
+
+    private void navigateToHome(String email) {
+        String role = userPrefs.getUserRole(email);
+        Intent intent;
+        
+        if (role != null && !role.isEmpty()) {
+            // Role selected, show welcome screen
+            intent = new Intent(MainActivity.this, HomeActivity.class);
+        } else {
+            // No role selected yet
+            intent = new Intent(MainActivity.this, RoleSelectionActivity.class);
+        }
+        
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

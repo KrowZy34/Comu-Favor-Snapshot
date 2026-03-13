@@ -127,26 +127,53 @@
                 android:textColor="@color/purple_login"
                 android:textSize="14sp" />
 
-            <!-- Password input -->
-            <EditText
-                android:id="@+id/etPassword"
+            <!-- Password input with toggle -->
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:autofillHints="password"
-                android:background="@android:color/transparent"
-                android:hint="Contraseña"
-                android:inputType="textPassword"
-                android:paddingStart="0dp"
-                android:paddingEnd="0dp"
-                android:textColor="@color/purple_login"
-                android:textColorHint="@color/purple_login_hint"
-                android:textSize="20sp" />
+                android:layout_height="48dp">
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints="password"
+                    android:background="@android:color/transparent"
+                    android:hint="Contraseña"
+                    android:inputType="textPassword"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="40dp"
+                    android:textColor="@color/purple_login"
+                    android:textColorHint="@color/purple_login_hint"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/ivTogglePassword"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:src="@drawable/ic_ocultar"
+                    android:contentDescription="Toggle password visibility"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </FrameLayout>
 
             <!-- Password underline -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/purple_login" />
+
+            <!-- Forgot password -->
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="¿Olvidaste tu contraseña?"
+                android:textColor="@color/purple_login_hint"
+                android:textSize="12sp"
+                android:clickable="true"
+                android:focusable="true" />
 
             <!-- Remember checkbox -->
             <CheckBox

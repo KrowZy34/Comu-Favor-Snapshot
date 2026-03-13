@@ -32,6 +32,26 @@
     <color name="post_red">#EF5350</color>
     <color name="post_red_dark">#4A0E0E</color>
     <color name="price_green">#4CAF50</color> <!-- In the screenshots the price text is green -->
+    <color name="price_red">#EF5350</color>
     <color name="orange_red_accent">#FF4500</color>
     <color name="text_secondary">#80FFFFFF</color>
+
+    <!-- Postulado status colors -->
+    <color name="status_green">#4CAF50</color>
+    <color name="status_orange">#FF9800</color>
+    <color name="status_red">#EF5350</color>
+
+    <!-- Habilidades colors -->
+    <color name="habilidad_chip_orange">#FF9E80</color>
+    <color name="habilidad_chip_purple">#B388FF</color>
+    <color name="habilidad_chip_blue">#81D4FA</color>
+    <color name="habilidad_chip_red">#FF8A80</color>
+    <color name="habilidad_chip_green">#A5D6A7</color>
+    <color name="habilidad_mas_text">#81C784</color>
+    <color name="habilidad_bg">#F4F6D7</color> <!-- Light yellow/green from the image -->
+    <color name="habilidad_border">#9D00FF</color>
+    
+    <!-- Create Job Button Colors -->
+    <color name="btn_descartar">#E6CFCF</color>
+    <color name="btn_enviar">#CFE6D3</color>
 </resources>

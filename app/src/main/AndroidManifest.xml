@@ -38,25 +38,60 @@
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".PaymentMethodsActivity"
-            android:exported="false" />
-        <activity
             android:name=".FeedActivity"
             android:exported="false" />
         <activity
-            android:name=".RecPostActivity"
+            android:name=".RecommendationsActivity"
             android:exported="false" />
         <activity
-            android:name=".PostuladosActivity"
+            android:name=".EmployeePostuladosActivity"
             android:exported="false" />
         <activity
-            android:name=".PostulanteDetalleActivity"
+            android:name=".GuardadosActivity"
             android:exported="false" />
         <activity
-            android:name=".PostulandoDetalleActivity"
+            android:name=".VerificationCodeActivity"
             android:exported="false" />
         <activity
-            android:name=".AgregarPropuestaActivity"
+            android:name=".VerificationInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JobDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AcceptedJobDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileHabilidadesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HabilidadesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EmployeeAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecruiterHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PublishedJobsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JobProposalsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ApplicantDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateJobActivity"
             android:exported="false" />
     </application>
 
