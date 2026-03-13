@@ -86,7 +86,7 @@ public class RecruiterHomeActivity extends AppCompatActivity {
             startActivity(new Intent(this, HistoryActivity.class));
         });
         findViewById(R.id.navPerfil).setOnClickListener(v -> {
-            // Could go to some account activity
+            startActivity(new Intent(this, RecruiterProfileActivity.class));
         });
     }
 }

@@ -88,6 +88,9 @@
             android:name=".JobProposalsActivity"
             android:exported="false" />
         <activity
+            android:name=".RecruiterProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ApplicantDetailActivity"
             android:exported="false" />
         <activity

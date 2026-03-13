@@ -45,14 +45,13 @@ public class ApplicantDetailActivity extends AppCompatActivity {
         });
 
         // Simulate employee confirmation by tapping the purple banner
-        llPendingStep.findViewById(android.R.id.text1 == 0 ? R.id.llPendingStep : R.id.llPendingStep).setOnClickListener(v -> {
+        llPendingStep.findViewById(R.id.llPendingStep).setOnClickListener(v -> {
             llPendingStep.setVisibility(View.GONE);
             llFinalizedStep.setVisibility(View.VISIBLE);
         });
 
         findViewById(R.id.btnCounterProposal).setOnClickListener(v -> {
-            // Placeholder action
-            finish();
+            showCounterProposalDialog();
         });
 
         findViewById(R.id.tvCancelProposal).setOnClickListener(v -> {
@@ -64,6 +63,35 @@ public class ApplicantDetailActivity extends AppCompatActivity {
             // End of process
             finish();
         });
+    }
+
+    private void showCounterProposalDialog() {
+        android.app.Dialog dialog = new android.app.Dialog(this);
+        dialog.setContentView(R.layout.dialog_counterproposal);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        android.widget.EditText etPrice = dialog.findViewById(R.id.etCounterPrice);
+        TextView btnCancelar = dialog.findViewById(R.id.btnDialogCancelar);
+        TextView btnConfirmar = dialog.findViewById(R.id.btnDialogConfirmar);
+
+        btnCancelar.setOnClickListener(v -> dialog.dismiss());
+
+        btnConfirmar.setOnClickListener(v -> {
+            String price = etPrice.getText().toString().trim();
+            if (price.isEmpty()) {
+                android.widget.Toast.makeText(this, "Por favor, ingresa un precio", android.widget.Toast.LENGTH_SHORT).show();
+                return;
+            }
+            android.widget.Toast.makeText(this, "Contrapropuesta enviada: S/" + price, android.widget.Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+            
+            findViewById(R.id.llActionStep).setVisibility(View.GONE);
+            findViewById(R.id.llPendingStep).setVisibility(View.VISIBLE);
+        });
+
+        dialog.show();
     }
 
     private void setupUI(Applicant applicant) {
